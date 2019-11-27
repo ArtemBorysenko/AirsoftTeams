@@ -1,0 +1,22 @@
+version: "3"
+services:
+  airsoftteams:
+    build: .
+    container_name: "airsoftteams"
+    environment:
+     - DB_ADMIN_NAME=Admin_docker
+     - DB_ADMIN_PASSWORD=1234
+    ports:
+      - "3000:3000"
+    depends_on:
+    - postgresql
+  postgresql:
+    container_name: "postgresql"
+    image: postgres:11.5
+    restart: always
+    environment:
+      POSTGRES_DB: AirsoftTeams
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: q1w2e3r4
+    ports:
+      - "5432:5432"
