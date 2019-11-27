@@ -1,0 +1,2227 @@
+{
+	"info": {
+		"_postman_id": "d8231cb1-e30f-42c9-8e8b-55b7f5d89df3",
+		"name": "AirsoftTeams",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "For admin",
+			"item": [
+				{
+					"name": "approve manager",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFkbWluIiwiaXNCbG9ja2VkIjpmYWxzZSwiaXNBY3RpdmUiOnRydWUsImlhdCI6MTU3MjYwMTUxNH0.gIwa9hgJKweOL6vBJgQQ4ES7bwMnTDxBWwHIlV-Bf1Q",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Admin",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "user_role",
+									"value": "Player",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "team",
+									"value": "B",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/manager/approve/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"manager",
+								"approve",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all managers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFkbWluIiwiaXNCbG9ja2VkIjpmYWxzZSwiaXNBY3RpdmUiOnRydWUsImlhdCI6MTU3MjYwMTUxNH0.gIwa9hgJKweOL6vBJgQQ4ES7bwMnTDxBWwHIlV-Bf1Q",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Kolya",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "user_role",
+									"value": "Player",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "team",
+									"value": "B",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/manager/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"manager",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get managers by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFkbWluIiwiaXNCbG9ja2VkIjpmYWxzZSwiaXNBY3RpdmUiOnRydWUsImlhdCI6MTU3MjYwMTUxNH0.gIwa9hgJKweOL6vBJgQQ4ES7bwMnTDxBWwHIlV-Bf1Q"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Kolya",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "user_role",
+									"value": "Player",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "team",
+									"value": "B",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/manager/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"manager",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all players",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFkbWluIiwiaXNCbG9ja2VkIjpmYWxzZSwiaXNBY3RpdmUiOnRydWUsImlhdCI6MTU3MjYwMTUxNH0.gIwa9hgJKweOL6vBJgQQ4ES7bwMnTDxBWwHIlV-Bf1Q"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Kolya",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "user_role",
+									"value": "Player",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "team",
+									"value": "B",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/player/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"player",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "activonation manager",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFkbWluIiwiaXNCbG9ja2VkIjpmYWxzZSwiaXNBY3RpdmUiOnRydWUsImlhdCI6MTU3MjYwOTc1OX0.HO5nXbY4_KVj-SNJPFj8vDBBcAe0Lp8DjgPABO6PE1k"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Kolya",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "user_role",
+									"value": "Player",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "team",
+									"value": "B",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "comment",
+									"value": "is ACTIVED",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/manager/approve/5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"manager",
+								"approve",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get players by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFkbWluIiwiaXNCbG9ja2VkIjpmYWxzZSwiaXNBY3RpdmUiOnRydWUsImlhdCI6MTU3MjYwMTUxNH0.gIwa9hgJKweOL6vBJgQQ4ES7bwMnTDxBWwHIlV-Bf1Q"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Kolya",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "user_role",
+									"value": "Player",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "team",
+									"value": "B",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/player/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"player",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all players in team",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFkbWluIiwiaXNCbG9ja2VkIjpmYWxzZSwiaXNBY3RpdmUiOnRydWUsImlhdCI6MTU3MjYwMTUxNH0.gIwa9hgJKweOL6vBJgQQ4ES7bwMnTDxBWwHIlV-Bf1Q"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Kolya",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "user_role",
+									"value": "Player",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "team",
+									"value": "B",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/team/B",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"team",
+								"B"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "blocking manager + why",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFkbWluIiwiaXNCbG9ja2VkIjpmYWxzZSwiaXNBY3RpdmUiOnRydWUsImlhdCI6MTU3MjYwMTUxNH0.gIwa9hgJKweOL6vBJgQQ4ES7bwMnTDxBWwHIlV-Bf1Q"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Kolya",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "user_role",
+									"value": "Player",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "team",
+									"value": "B",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "comment",
+									"value": "BAN",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/manager/blocked/5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"manager",
+								"blocked",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete by id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFkbWluIiwiaXNCbG9ja2VkIjpmYWxzZSwiaXNBY3RpdmUiOnRydWUsImlhdCI6MTU3MjYwMTUxNH0.gIwa9hgJKweOL6vBJgQQ4ES7bwMnTDxBWwHIlV-Bf1Q"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Kolya",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "user_role",
+									"value": "Player",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "team",
+									"value": "B",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/player/delete/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"player",
+								"delete",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete manager  by id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFkbWluIiwiaXNCbG9ja2VkIjpmYWxzZSwiaXNBY3RpdmUiOnRydWUsImlhdCI6MTU3MjYwMTUxNH0.gIwa9hgJKweOL6vBJgQQ4ES7bwMnTDxBWwHIlV-Bf1Q"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Kolya",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "user_role",
+									"value": "Player",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "team",
+									"value": "B",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/manager/666",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"manager",
+								"666"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "blocking player + why",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFkbWluIiwiaXNCbG9ja2VkIjpmYWxzZSwiaXNBY3RpdmUiOnRydWUsImlhdCI6MTU3MjYwMTUxNH0.gIwa9hgJKweOL6vBJgQQ4ES7bwMnTDxBWwHIlV-Bf1Q"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Kolya",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "user_role",
+									"value": "Player",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "team",
+									"value": "B",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "comment",
+									"value": " BLOCKED PLAYER",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/manager/approve/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"manager",
+								"approve",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete player from team + why",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFkbWluIiwiaXNCbG9ja2VkIjpmYWxzZSwiaXNBY3RpdmUiOnRydWUsImlhdCI6MTU3MjYwMTUxNH0.gIwa9hgJKweOL6vBJgQQ4ES7bwMnTDxBWwHIlV-Bf1Q"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Kolya",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "user_role",
+									"value": "Player",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "team",
+									"value": "B",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "id",
+									"value": "5",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "comment",
+									"value": "deleted from the team",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/team/out/5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"team",
+								"out",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "activonation player",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFkbWluIiwiaXNCbG9ja2VkIjpmYWxzZSwiaXNBY3RpdmUiOnRydWUsImlhdCI6MTU3MjYxMDQxM30.KJzYzzfTRuPOans-vcCyEMnDxwJ5gbs3PhYs9KJzMis"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Kolya",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "user_role",
+									"value": "Player",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "team",
+									"value": "B",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "comment",
+									"value": " IS ACTIVED PLAYER",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/player/approve/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"player",
+								"approve",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "For player",
+			"item": [
+				{
+					"name": "apply for addition in the team",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6IlBsYXllciIsImlzQmxvY2tlZCI6ZmFsc2UsImlzQWN0aXZlIjp0cnVlLCJpYXQiOjE1NzI2MDI5NzV9.OReSDc8-o5StBIbHPdfclp4eCYfpU6BekuJXHn0uo9Q",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Kolya",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "user_role",
+									"value": "Player",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "team",
+									"value": "B",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "id",
+									"value": "3",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/team/add/A",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"team",
+								"add",
+								"A"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all players in team",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6IlBsYXllciIsImlzQmxvY2tlZCI6ZmFsc2UsImlzQWN0aXZlIjp0cnVlLCJpYXQiOjE1NzI2MDI5Njh9.ZjYrXkfvjo6z9i86IyBe-MG64VrL7CIAeKBYciFKFFQ"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Kolya",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "user_role",
+									"value": "Player",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "team",
+									"value": "B",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/team/B",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"team",
+								"B"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "apply for exit the team",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTgsInJvbGUiOiJQbGF5ZXIiLCJpc0Jsb2NrZWQiOmZhbHNlLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNTc0MDc2MjMyLCJleHAiOjE1NzQyMDU4MzJ9.6ExlIz3uSFNM1lbZIHSncZskL9fqEcCpRLlVTJHF9rc"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Kolya",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "user_role",
+									"value": "Player",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "team",
+									"value": "B",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "comment",
+									"value": "Deleet with teram",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/team/out/58",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"team",
+								"out",
+								"58"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "switch team",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6IlBsYXllciIsImlzQmxvY2tlZCI6ZmFsc2UsImlzQWN0aXZlIjp0cnVlLCJpYXQiOjE1NzI2MDI5NzV9.OReSDc8-o5StBIbHPdfclp4eCYfpU6BekuJXHn0uo9Q"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Kolya",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "user_role",
+									"value": "Player",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "team",
+									"value": "B",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "id",
+									"value": "3",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/team/switch/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"team",
+								"switch",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all players",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6IlBsYXllciIsImlzQmxvY2tlZCI6ZmFsc2UsImlzQWN0aXZlIjp0cnVlLCJpYXQiOjE1NzI2MDI5Njh9.ZjYrXkfvjo6z9i86IyBe-MG64VrL7CIAeKBYciFKFFQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Kolya",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "user_role",
+									"value": "Player",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "team",
+									"value": "B",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/player/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"player",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "For manager",
+			"item": [
+				{
+					"name": "delete player from team + why",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInJvbGUiOiJBZG1pbiIsImlzQmxvY2tlZCI6ZmFsc2UsImlzQWN0aXZlIjp0cnVlLCJpYXQiOjE1NzQwODg1ODF9.fiF_2-OiO440Jp90ae3tOhiOXgWdRHyy3dXQuZc6geQ"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Kolya",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "user_role",
+									"value": "Player",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "team",
+									"value": "B",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "comment",
+									"value": "why",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/player/59",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"player",
+								"59"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "approve add player in team",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkRhbmlsIiwiaWQiOjIsInJvbGUiOiJNYW5hZ2VyIiwiaXNCbG9ja2VkIjpmYWxzZSwiaXNBY3RpdmUiOnRydWUsImlhdCI6MTU3NDI1ODg4Mn0.hqJLgMN3_wIblGL32a6wVq-XFQjEfvjZmd1ZF-3SETM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Kolya",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "user_role",
+									"value": "Player",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "team",
+									"value": "B",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/player/approve_team/44",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"player",
+								"approve_team",
+								"44"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all players in team",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6Ik1hbmFnZXIiLCJpc0Jsb2NrZWQiOmZhbHNlLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNTcyNjAyOTc4fQ.YM1cpt_JnqBGh6C8ac8RaqtmQZgmkSOG2yqyYtRr-lg"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Kolya",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "user_role",
+									"value": "Player",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "team",
+									"value": "B",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/player/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"player",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all players",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6Ik1hbmFnZXIiLCJpc0Jsb2NrZWQiOmZhbHNlLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNTcyNjAyOTc4fQ.YM1cpt_JnqBGh6C8ac8RaqtmQZgmkSOG2yqyYtRr-lg"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Kolya",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "user_role",
+									"value": "Player",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "team",
+									"value": "B",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/player/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"player",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get players by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6Ik1hbmFnZXIiLCJpc0Jsb2NrZWQiOmZhbHNlLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNTcyNjAyOTc4fQ.YM1cpt_JnqBGh6C8ac8RaqtmQZgmkSOG2yqyYtRr-lg"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Kolya",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "user_role",
+									"value": "Player",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "team",
+									"value": "B",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/player/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"player",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "approve Team",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Niwicm9sZSI6Ik1hbmFnZXIiLCJpc0Jsb2NrZWQiOmZhbHNlLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNTcyNjA3NzE5fQ.-YUlLz2piHH32mfib1pkhXpVsj5DFigJjuc8ZAfsmQE"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Kolya",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "user_role",
+									"value": "Player",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "team",
+									"value": "B",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "id",
+									"value": "3",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/player/approve_team/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"player",
+								"approve_team",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Log in",
+			"item": [
+				{
+					"name": "login (player team B)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6IlBsYXllciIsImlhdCI6MTU3MjUxMTg5Mn0.wE46RDL7iJAL9qUx13pgwqTCL9sIwhOINZb7GgCrZVc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Kolya",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "user_role",
+									"value": "Player",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "team",
+									"value": "B",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login Admin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6IlBsYXllciIsImlhdCI6MTU3MjUxMTg5Mn0.wE46RDL7iJAL9qUx13pgwqTCL9sIwhOINZb7GgCrZVc",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Admin",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "user_role",
+									"value": "Admin",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "team",
+									"value": "B",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login (Manager team A)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6IlBsYXllciIsImlhdCI6MTU3MjUxMTg5Mn0.wE46RDL7iJAL9qUx13pgwqTCL9sIwhOINZb7GgCrZVc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Kiril",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "user_role",
+									"value": "Manager",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "team",
+									"value": "A",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login (Manager team B)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6IlBsYXllciIsImlhdCI6MTU3MjUxMTg5Mn0.wE46RDL7iJAL9qUx13pgwqTCL9sIwhOINZb7GgCrZVc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Danil",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "user_role",
+									"value": "Manager",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "team",
+									"value": "B",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "log out",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFkbWluIiwiaXNCbG9ja2VkIjpmYWxzZSwiaXNBY3RpdmUiOnRydWUsImlhdCI6MTU3Mjg2NTExOX0.DYbzZX0YLd_eWSrMB_XM47RPeesrmQqnXVLgUhUfE9M",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Kiril",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "user_role",
+									"value": "Manager",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "team",
+									"value": "A",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "refreshToken",
+									"value": "b64482d5-d5ca-42df-b7f0-5e7ddf0ad837",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refreshToken",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6IlBsYXllciIsImlhdCI6MTU3MjUxMTg5Mn0.wE46RDL7iJAL9qUx13pgwqTCL9sIwhOINZb7GgCrZVc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Kiril",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "user_role",
+									"value": "Manager",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "team",
+									"value": "A",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "refreshToken",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/refreshToken",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"refreshToken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login(player team A)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6IlBsYXllciIsImlhdCI6MTU3MjUxMTg5Mn0.wE46RDL7iJAL9qUx13pgwqTCL9sIwhOINZb7GgCrZVc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Vasya",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "user_role",
+									"value": "Player",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "team",
+									"value": "A",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Registration",
+			"item": [
+				{
+					"name": "registration(player team B)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6IlBsYXllciIsImlhdCI6MTU3MjUxMTg5Mn0.wE46RDL7iJAL9qUx13pgwqTCL9sIwhOINZb7GgCrZVc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Kolya",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "user_role",
+									"value": "Player",
+									"type": "text"
+								},
+								{
+									"key": "team",
+									"value": "B",
+									"type": "text"
+								},
+								{
+									"key": "isActive",
+									"value": "true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/registration",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"registration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registration(player team A)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6IlBsYXllciIsImlhdCI6MTU3MjUxMTg5Mn0.wE46RDL7iJAL9qUx13pgwqTCL9sIwhOINZb7GgCrZVc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Vasya",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "user_role",
+									"value": "Player",
+									"type": "text"
+								},
+								{
+									"key": "team",
+									"value": "A",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/registration",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"registration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registration(Manager team A)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6IlBsYXllciIsImlhdCI6MTU3MjUxMTg5Mn0.wE46RDL7iJAL9qUx13pgwqTCL9sIwhOINZb7GgCrZVc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Kiril",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "user_role",
+									"value": "Manager",
+									"type": "text"
+								},
+								{
+									"key": "team",
+									"value": "A",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/registration",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"registration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registration Admin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6IlBsYXllciIsImlhdCI6MTU3MjUxMTg5Mn0.wE46RDL7iJAL9qUx13pgwqTCL9sIwhOINZb7GgCrZVc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Admin",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "user_role",
+									"value": "Admin",
+									"type": "text"
+								},
+								{
+									"key": "team",
+									"value": "B",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "isActive",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "isBlocked",
+									"value": "false",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/registration",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"registration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registration(Manager team B)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6IlBsYXllciIsImlhdCI6MTU3MjUxMTg5Mn0.wE46RDL7iJAL9qUx13pgwqTCL9sIwhOINZb7GgCrZVc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "formTest11",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/registration",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"registration"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
