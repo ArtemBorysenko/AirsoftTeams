@@ -1,12 +1,13 @@
 const Sequelize = require('sequelize');
 const bcrypt = require('bcryptjs');
+const config = require('../config');
 //'AirsoftTeams', 'postgres', 'q1w2e3r4' local
 //'postgres://postgres:q1w2e3r4@postgresql:5432/AirsoftTeams' docker
 
 //TODO Тут оставить чисто параметры конфигураций файлов
-const sequelize =  new Sequelize('AirsoftTeams', 'postgres', 'q1w2e3r4', {
-    host: 'localhost',
-    port: 5432,
+const sequelize =  new Sequelize(config.database.name, config.database.user, config.database.password, {
+    host: config.database.host,
+    port: config.database.port,
     dialect: 'postgres',
     operatorsAliases: false,
 
@@ -35,7 +36,7 @@ while (retries) {
         break;
     } catch (err) {
         console.log(err);
-        retries -= 1; //TODO можно retries--
+        retries--;
         console.log(`retries left: ${retries}`);
         await new Promise(res => setTimeout(res, 5000));
     }

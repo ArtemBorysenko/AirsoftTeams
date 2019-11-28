@@ -74,7 +74,7 @@ server.listen(3000, function () {
     console.log('Example app listening on port ' + server.address().port);
 });
 
- io.use(sharedsession(session));
+io.use(sharedsession(session));
 let count = 0;
 
 io
