@@ -18,7 +18,7 @@ sharedsession = require("express-socket.io-session");
 
 const io = require('socket.io').listen(server);
 
-const db =  require('./config/database.js');
+require('./connections/psql-connection.js');
 
 const routerManager = require('./routes/manager');
 const routerPlayer = require('./routes/player');

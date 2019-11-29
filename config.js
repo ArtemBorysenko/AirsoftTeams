@@ -5,6 +5,7 @@ module.exports = rc('JWT', {
     port: process.env.PORT || 3000,
     secret: 'VERYSECRETKEY_2',
     time : null,
+    regId: 5,
 
     mailAdmin: process.env.ADMIN_MAIL || 'artem.borisenko@computools.com',
     mailManager: process.env.MANAGER_MAIL || 'artem.borisenko@computools.com',
@@ -25,5 +26,6 @@ module.exports = rc('JWT', {
         host: 'localhost',
         port: '5432',
         name: 'airsoftteams',
+        retries: 5
     },
 });

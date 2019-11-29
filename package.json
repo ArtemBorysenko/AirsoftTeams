@@ -9,6 +9,7 @@
     "create-db": "node ./migrations/scripts/create-db.js",
     "db-migrate-create": "sequelize migration:create --name [new_migration_name]",
     "db-migrate-up": "sequelize db:migrate",
+    "db-seeders-up": "sequelize-cli db:seed:all",
     "db-migrate-down": "sequelize db:migrate:undo",
     "db-migrate-down-all": "sequelize db:migrate:undo:all"
   },
