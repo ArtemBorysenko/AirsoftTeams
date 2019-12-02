@@ -24,7 +24,6 @@ async function connection() {
     }
 }
 connection();
-//TODO: 1
 
 const modelNames = ['users', 'users_creds', 'users_tokens', 'comments'];
 for (const modelName of modelNames) {

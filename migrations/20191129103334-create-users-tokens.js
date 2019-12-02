@@ -6,6 +6,8 @@ module.exports = {
 
       id: {
         type: DataTypes.INTEGER,
+        autoIncrement: true,
+        unique: true,
       },
       token: {
         type: DataTypes.STRING
@@ -15,7 +17,6 @@ module.exports = {
       },
       userId: {
         type: DataTypes.INTEGER,
-        //autoIncrement: true,
       },
       createdAt: {
         type: DataTypes.DATE,

@@ -35,11 +35,9 @@ module.exports = {
       },
       usercredId: {
         type: DataTypes.INTEGER,
-        //autoIncrement: true,
       },
       commentId: {
         type: DataTypes.INTEGER,
-        //autoIncrement: true,
       }
 
     }),
