@@ -75,7 +75,7 @@ async function blockingPlayer(req, res) {
         });
 };
 
-async function deletePlayer (req, res) {
+async function deleteUser (req, res) {
     db.deleteUser(req.params.id);
     res.send('пользователь удален')
 };
@@ -128,7 +128,7 @@ module.exports = {
     getAllPlayers,
     approvingPlayer,
     blockingPlayer,
-    deletePlayer,
+    deleteUser,
     deleteFromTeam,
     approvingTeam
 };

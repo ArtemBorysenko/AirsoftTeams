@@ -20,11 +20,12 @@ const io = require('socket.io').listen(server);
 
 require('./connections/psql-connection.js');
 
+const routerAdmin = require('./routes/admin');
 const routerManager = require('./routes/manager');
 const routerPlayer = require('./routes/player');
 const routerRefreshToken = require('./routes/refreshToken');
 const routerTeam = require('./routes/team');
-const routerReg = require('./routes/reg');
+const routerReg = require('./routes/registration');
 const routerLog = require('./routes/login');
 const routerLogout = require('./routes/logout');
 
@@ -65,9 +66,10 @@ app.use(
         next();
     }
 );
+app.use('/admin', routerAdmin);
 app.use('/manager', routerManager);
 app.use('/player', routerPlayer);
-app.use('/team', routerTeam);
+// app.use('/team', routerTeam);
 app.use('/logout', routerLogout);
 
 server.listen(3000, function () {

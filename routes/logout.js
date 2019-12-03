@@ -1,5 +1,5 @@
 const express = require('express');
-const cntrl = require('../controllers/logout');
+const cntrl = require('../controllers/auth');
 const router = express.Router();
 
 router.get('/', cntrl.logOut);

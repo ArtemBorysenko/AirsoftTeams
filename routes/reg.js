@@ -1,1 +1,0 @@
-const express = require('express');const cntrl = require('../controllers/reg');const mail = require('../controllers/mailer');const socketNtfc = require('../controllers/socketNotifications');const router = express.Router();router.post('/', cntrl.registration, socketNtfc.ntfcReg, mail.mailer);router.get('/', socketNtfc.ntfcReg);module.exports = router;

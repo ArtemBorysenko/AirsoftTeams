@@ -1,5 +1,5 @@
 const config = require('../config');
-const sequelize = require('../config/database')
+const sequelize = require('./database')
 
 let retries = config.database.retries;
 async function connection() {

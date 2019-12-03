@@ -1,7 +1,7 @@
 const express = require('express');
-const dbApi = require('../controllers/login');
+const cntrl = require('../controllers/auth');
 const router = express.Router();
 
-router.post('/', dbApi.logIn);
+router.post('/', cntrl.logIn);
 
 module.exports = router;

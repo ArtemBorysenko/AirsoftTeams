@@ -5,7 +5,7 @@ const config = require('../config');
   async function mailer(req, res, next) {
 
       let mailOptions = {};
-      if (req.originalUrl === `/team/out/${req.params.id}` || req.originalUrl === `/team/add/${req.params.id}` || req.originalUrl === `/team/switch/${req.params.id}`) {
+      if (req.originalUrl === `/player/team/out/${req.params.id}` || req.originalUrl === `/player/team/add/${req.params.id}` || req.originalUrl === `/player/team/switch/${req.params.id}`) {
           mailOptions = {
               from: '"Tetta App" <artemborysenco@gmail.com>',
               to: config.mailManager,
@@ -14,7 +14,7 @@ const config = require('../config');
           }
       }
 
-      if(req.originalUrl ===  `/manager/approve/${req.params.id}`){
+      if(req.originalUrl ===  `/admin/manager/approve/${req.params.id}`){
           mailOptions = {
               from: '"Tetta App" <artemborysenco@gmail.com>',
               to: config.mailManager,
@@ -23,14 +23,6 @@ const config = require('../config');
           }
       }
 
-      if(req.originalUrl ===  `/player/${req.params.id}`){
-          mailOptions = {
-              from: '"Tetta App" <artemborysenco@gmail.com>',
-              to: config.mailAdmin,
-              subject: 'Player delete ',
-              text: 'This is the email sent through Gmail SMTP Server.'
-          }
-      }
 
       if (req.baseUrl === '/registration' && req.body.user_role === 'Manager') {
           mailOptions = {
@@ -41,7 +33,7 @@ const config = require('../config');
           }
       }
 
-      if (req.originalUrl === `/player/approve_team/${req.params.id}`) {
+      if (req.originalUrl === `/manager/player/approve_team/${req.params.id}`) {
           mailOptions = {
               from: '"Tetta App" <artemborysenco@gmail.com>',
               to: config.mailPlayer,
@@ -65,10 +57,11 @@ const config = require('../config');
 
           transporter.sendMail(mailOptions, function(error, request=req, respons=res) {
               if (error) {
+                  respons.status(400).json('При отправке письма произошла ошибка!');
                   return console.log(`При отправке письма произошла ошибка!: ${error}`);
               }
               console.log('Письмо успешно отправлено!');
-              respons.status(200).send('Письмо успешно отправлено!');
+              respons.status(200).json('Письмо успешно отправлено!');
           });
       }
  }

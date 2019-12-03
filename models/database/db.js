@@ -1,4 +1,5 @@
-const sequelize = require('../../config/database');
+const sequelize = require('../../connections/database');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const uuid = require('uuid/v4');
 const config = require('../../config');
@@ -55,7 +56,7 @@ async function changeTeam (paramsId, teamId, comment) {
         { where: { id: paramsId } });
 };
 
-async function createToken (user,res) {
+async function createToken (user, res) {
     const refreshToken = uuid();
     const token = jwt.sign(
         {
@@ -77,8 +78,9 @@ async function newRefreshToken (refreshToken, res) {
     sequelize.models.users_tokens.findOne({
         where: {refreshToken: refreshToken}
     }).then(token => {
-        sequelize.models.users.findOne({ where: {id: token.id} }).then(user => {
-            createToken(user, res);
+        sequelize.models.users.findOne({ where: {id: token.id} }).then(async user => {
+            const token = await createToken(user, res);
+            res.json(token);
         })
     }).catch((err) => {
         console.log('id not found');
@@ -93,6 +95,69 @@ async function removeToken (paramsId) {
         { where: { id: paramsId } });
 };
 
+async function registration (req, res, next) {
+
+    sequelize.models.users.findOne({ where: {username: req.body.username} }).then(user => {
+        if (user) {
+            res
+                .status(400)
+                .json('Пользователь с таким логином уже существует');
+        }
+        else
+            sequelize.models.users.create(
+                {
+                    username: req.body.username,
+                    user_role: req.body.user_role,
+                    team: req.body.team,
+                    isActive: req.body.isActive || false, // isActive = false
+                    isBlocked: false,
+                    usercred: {
+                        password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10), null)
+                    },
+                    tokens: {
+                        token: null,
+                        refreshToken: null
+                    },
+                    comment: {
+                        blocked: null,
+                        deleted: null,
+                        actived: null
+                    }
+                },
+                {
+                    include: [{all: true }]
+                }
+            );
+        if(req.body.user_role === 'Manager' && !user) next();
+        else res.status(200).json('Пользователь зарегистрирван');
+    });
+
+}
+
+async function login (req, res, next) {
+
+    sequelize.models.users.findOne({ where: {username: req.body.username} }).then(user => {
+        sequelize.models.users_creds.findOne({ where: {id: user.id} }).then(async users_creds => {
+            if(bcrypt.compareSync(req.body.password, users_creds.password))
+            {
+                const token = await createToken(user, res);
+                res.json(token);
+            }
+            else {
+                console.log('Неверный пароль');
+                const err = new Error();
+                err.status = 403;
+                throw err;
+            }
+        });
+    }).catch((err) => {
+        console.log('Неверный логин');
+        res
+            .status(400)
+            .json({err: err.message});
+    })
+}
+
 module.exports = {
     getAllByUser_role,
     getAllByTeam,
@@ -105,6 +170,8 @@ module.exports = {
     changeTeam,
     createToken,
     newRefreshToken,
-    removeToken
+    removeToken,
+    registration,
+    login
 };
 
