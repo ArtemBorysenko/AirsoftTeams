@@ -1,4 +1,4 @@
-#LOCAL
+# LOCAL
 
 ## Установка
 
@@ -19,15 +19,15 @@ DB_NAME= <name new database>
 
 * Запустить PostgreSQL `service postgresql start`
 
-###Create DB
+### Create DB
 
 `npm run create-db`
 
-###Create migrations
+### Create migrations
 
 `npm run db-migrate-up`
 
-###Create seeders
+### Create seeders
 
 Создать пользователя
 ```
