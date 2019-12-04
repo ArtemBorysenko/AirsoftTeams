@@ -4,6 +4,6 @@ module.exports = {
 
     // Сделал TODO поместить конфиг миграций в папку миграций
 
-    'config': path.resolve('migrations/config.json'),
+    'config': path.resolve('migrations/config/config.js'),
     'migrations-path': path.resolve('migrations')
 };

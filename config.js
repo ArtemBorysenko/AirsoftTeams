@@ -23,7 +23,7 @@ module.exports = rc('JWT', {
     database: {
         user: process.env.DOCKER_DB_USER  || process.env.DB_USER  || 'postgres',
         password: process.env.DOCKER_DB_PASSWORD  || process.env.DB_PASSWORD || 'q1w2e3r4',
-        host: process.env.DOCKER_DB_HOST  || 'localhost',
+        host: process.env.POSTGRES_HOST  || 'localhost',
         port: process.env.DOCKER_DB_PORT  || '5432',
         name: process.env.DOCKER_DB_NAME  || process.env.DB_NAME || 'airsoftteams',
         retries: 5,

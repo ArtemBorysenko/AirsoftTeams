@@ -1,9 +1,11 @@
-{
+const config = require('../../config')
+
+module.exports = {
   "development": {
     "username": "postgres",
     "password": "q1w2e3r4",
     "database": "airsoftteams",
-    "host": "postgresql",
+    "host":  config.database.host || "localhost",
     "dialect": "postgres",
     "operatorsAliases": 0
   },
