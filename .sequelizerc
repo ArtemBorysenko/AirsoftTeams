@@ -1,6 +1,9 @@
 const path = require('path');
 
 module.exports = {
+
+    // Сделал TODO поместить конфиг миграций в папку миграций
+
     'config': path.resolve('migrations/config.json'),
     'migrations-path': path.resolve('migrations')
 };

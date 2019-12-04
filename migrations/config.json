@@ -3,9 +3,9 @@
     "username": "postgres",
     "password": "q1w2e3r4",
     "database": "airsoftteams",
-    "host": "localhost",
+    "host": "postgresql",
     "dialect": "postgres",
-    "operatorsAliases": false
+    "operatorsAliases": 0
   },
   "test": {
     "username": "postgres",
@@ -13,7 +13,7 @@
     "database": "airsoftteams",
     "host": "localhost",
     "dialect": "postgres",
-    "operatorsAliases": false
+    "operatorsAliases": 0
   },
   "production": {
     "username": "postgres",
@@ -21,6 +21,6 @@
     "database": "airsoftteams",
     "host": "localhost",
     "dialect": "postgres",
-    "operatorsAliases": false
+    "operatorsAliases": 0
   }
 }

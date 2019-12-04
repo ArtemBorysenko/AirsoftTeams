@@ -9,11 +9,19 @@ const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
 
 let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
-}
+  sequelize = new Sequelize('postgres://postgres:q1w2e3r4@postgresql:5432/airsoftteams', {
+    host: config.database.host,
+    port: config.database.port,
+    dialect: 'postgres',
+    operatorsAliases: 0,
+
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000
+    },
+  });
 
 fs
   .readdirSync(__dirname)

@@ -1,7 +1,8 @@
 {
   "name": "AirsoftTeams",
   "version": "1.0.0",
-  "description": "",
+  "description": "AirsoftTeams - test project",
+  "repository": "https://github.com/ArtemBorysenko/AirsoftTeams",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
@@ -17,7 +18,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^3.0.6",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
     "cookie-parser": "^1.4.3",

@@ -92,7 +92,9 @@ async function newRefreshToken (refreshToken, res) {
 
 async function removeToken (paramsId) {
     sequelize.models.users_tokens.update({ token: null},
-        { where: { id: paramsId } });
+        { where: { id: paramsId } }).then(() => {
+        res.status(200).json('logout, access token deleted');
+    });
 };
 
 async function registration (req, res, next) {

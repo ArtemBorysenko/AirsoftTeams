@@ -33,3 +33,6 @@ module.exports = rc('JWT', {
         }
     },
 });
+
+
+//Сделал TODO описать создание и запуск в README

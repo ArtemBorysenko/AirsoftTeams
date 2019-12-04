@@ -33,7 +33,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-app.use(express.static(path.join(__dirname, '../AirsoftTeams_frontend')));
+app.use(express.static(path.join(__dirname, './frontend')));
 
 app.use(function(req,res,next){
     req.io = io;
