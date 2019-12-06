@@ -12,7 +12,8 @@
     "db-migrate-up": "sequelize db:migrate",
     "db-seeders-up": "sequelize-cli db:seed:all",
     "db-migrate-down": "sequelize db:migrate:undo",
-    "db-migrate-down-all": "sequelize db:migrate:undo:all"
+    "db-migrate-down-all": "sequelize db:migrate:undo:all",
+    "precommit": "lint-staged"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +28,7 @@
     "express-jwt": "^5.3.1",
     "express-session": "^1.17.0",
     "express-socket.io-session": "^1.3.5",
+    "express-validator": "^6.3.0",
     "fs": "0.0.1-security",
     "jsonwebtoken": "^8.5.1",
     "jwt-simple": "^0.5.6",
@@ -58,5 +60,11 @@
     "mocha": "^6.2.2",
     "prettier": "1.19.1",
     "supertest": "^4.0.2"
+  },
+  "lint-staged": {
+    "*.{js, jsx, json}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }

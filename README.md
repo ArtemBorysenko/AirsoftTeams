@@ -40,8 +40,11 @@ ADMIN_PASSWORD=<Пароль пользователя по умолчанию>
 
 `node app.js`
 
+---
+
 # DOCKER
 
 ## Start Containers
 
 `docker-compose up --build`
+
