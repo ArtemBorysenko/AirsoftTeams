@@ -1,91 +1,79 @@
-const db = require('../models/database/db');
+const db = require("../models/database/db")
 
-async function getPlayersByTeam(req, res) {
-    db.getAllByTeam(req.params.id)
+async function getPlayersByTeam(id) {
+    return db
+        .getAllByTeam(id)
         .then((user) => {
-        if (user) {
-            res.json(user);
-        } else {
-            res
-                .status(400)
-                .json({err: 'Team not found'});
-        }
-    })
-        .catch((err) => {
-            res
-                .status(400)
-                .json({err: err.message});
-        })
-};
-
-async function addPlayerInTeam(req, res, next) {
-    db.getById(req.id)
-        .then((user) => {
-            if (user && user.user_role === 'Player' && user.team !== 'A' && user.team !== 'B') {
-                db.changeTeam(req.id, req.params.id);
-                res.json('Запрос отправлен');
-                next();
+            if (user) {
+                return user
             } else {
-                res
-                    .status(400)
-                    .json({err: req.id});
+                return new Error("Team not found")
             }
         })
         .catch((err) => {
-            res
-                .status(400)
-                .json({err: err.message});
+            return new Error("Team not found" + err)
         })
-};
+}
 
-async function outPlayerWithTeam (req, res, next) {
-    db.getById(req.params.id)
+async function addPlayerInTeam(userId, teamId) {
+    return db
+        .getById(userId)
         .then((user) => {
-            if (user && user.user_role === 'Player') {
-                db.deleteTeam(req.params.id, req.body.comment);
-                res.send('Игрок покинул команду');
-                next();
+            if (
+                user &&
+                user.user_role === "Player" &&
+                user.team !== "A" &&
+                user.team !== "B"
+            ) {
+                db.changeTeam(user.id, teamId)
+                return "Запрос отправлен"
             } else {
-                res
-                    .status(400)
-                    .json({err: 'Team not found'});
+                return new Error("Ошибка при отправке запроса")
             }
         })
         .catch((err) => {
-            res
-                .status(400)
-                .json({err: err.message});
+            return new Error("Ошибка при отправке запроса" + err)
         })
-};
+}
 
-async function switchTeam(req, res, next) {
-    db.getById(req.params.id)
+async function outPlayerWithTeam(id, comment) {
+    return db
+        .getById(id)
         .then((user) => {
-            if (user && user.user_role === 'Player') {
-                if(user.team === 'A')
-                db.changeTeam(req.params.id, 'B');
-                if(user.team === 'B')
-                    db.changeTeam(req.params.id, 'A');
-                if(user.team !== 'B' && user.team !== 'A')
-                    res.json(`${user.username} не входит в команду`);
-                res.json('Запрос отправлен');
-                next();
+            if (user && user.user_role === "Player") {
+                db.deleteTeam(user.id, comment)
+                return "Игрок покинул команду"
             } else {
-                res
-                    .status(400)
-                    .json({err: 'Team not found'});
+                return new Error("Team not found")
             }
         })
         .catch((err) => {
-            res
-                .status(400)
-                .json({err: err.message});
+            return new Error("Team not found" + err)
         })
-};
+}
+
+async function switchTeam(id) {
+    return db
+        .getById(id)
+        .then((user) => {
+            if (user && user.user_role === "Player") {
+                if (user.team === "A") db.changeTeam(user.id, "B")
+                if (user.team === "B") db.changeTeam(user.id, "A")
+                if (user.team !== "B" && user.team !== "A")
+                    res.json(`${user.username} не входит в команду`)
+                return "Запрос отправлен"
+            } else {
+                return new Error("Team not found")
+            }
+        })
+        .catch((err) => {
+            return new Error("Team not found" + err)
+        })
+}
 
 module.exports = {
     getPlayersByTeam,
     addPlayerInTeam,
     outPlayerWithTeam,
-    switchTeam
-};
+    switchTeam,
+}

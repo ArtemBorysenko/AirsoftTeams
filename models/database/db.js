@@ -62,55 +62,39 @@ async function changeTeam(paramsId, teamId, comment) {
     )
 }
 
-async function createToken(user) {
-    const refreshToken = uuid()
-    const token = jwt.sign(
-        // TODO вынести из моделей все что не касается БД
-        // TODO проверки ответов БД
-        // TODO перенести в роутеры все
-        //   return res.status(400).json({err: err.message});
-
-        {
-            username: user.username,
-            id: user.id,
-            role: user.user_role,
-            isBlocked: user.isBlocked,
-            isActive: user.isActive,
-        },
-        config.secret,
-        config.time,
-    )
+async function addToken(id, token, refreshToken) {
     sequelize.models.users_tokens.update(
         {token: token, refreshToken: refreshToken},
-        {where: {id: user.id}},
+        {where: {id: id}},
     )
     return {token, refreshToken}
 }
 
-async function newRefreshToken(refreshToken, res) {
-    sequelize.models.users_tokens
+async function newRefreshToken(refreshToken) {
+    return sequelize.models.users_tokens
         .findOne({
             where: {refreshToken: refreshToken},
         })
         .then((token) => {
-            sequelize.models.users
+            return sequelize.models.users
                 .findOne({where: {id: token.id}})
                 .then(async (user) => {
-                    const token = await createToken(user, res)
-                    res.json(token)
+                    return user
                 })
         })
         .catch((err) => {
-            console.log("id not found")
-            res.status(400).json({err: err.message})
+            return new Error("id not found" + err)
         })
 }
 
-async function removeToken(paramsId) {
-    sequelize.models.users_tokens
-        .update({token: null}, {where: {id: paramsId}})
+async function removeToken(token) {
+    return sequelize.models.users_tokens
+        .update({token: null}, {where: {token: token}})
         .then(() => {
-            res.status(200).json("logout, access token deleted")
+            return "Токен удален"
+        })
+        .catch((err) => {
+            return new Error("Ошибка при удаление токена" + err)
         })
 }
 
@@ -121,54 +105,35 @@ async function registration(newUser) {
             if (user) {
                 return new Error("Пользователь с таким логином уже существует")
             } else
-                sequelize.models.users.create(
-                    {
-                        username: newUser.username,
-                        user_role: newUser.user_role,
-                        team: newUser.team,
-                        isActive: newUser.isActive || false, // isActive = false
-                        isBlocked: false,
-                        usercred: {
-                            password: bcrypt.hashSync(
-                                newUser.password,
-                                bcrypt.genSaltSync(10),
-                                null,
-                            ),
-                        },
-                        tokens: {
-                            token: null,
-                            refreshToken: null,
-                        },
-                        comment: {
-                            blocked: null,
-                            deleted: null,
-                            actived: null,
-                        },
-                    },
-                    {
+                return sequelize.models.users
+                    .create(newUser, {
                         include: [{all: true}],
-                    },
-                )
-            console.log("Пользователь зарегистрирван")
+                    })
+                    .then(() => {
+                        return "Пользователь зарегистрировался"
+                    })
+        })
+        .catch((err) => {
+            return new Error("Ошибка при регистрации" + err)
         })
 }
 
 async function login(username, password) {
-    sequelize.models.users
+    return sequelize.models.users
         .findOne({where: {username: username}})
         .then((user) => {
-            sequelize.models.users_creds
+            return sequelize.models.users_creds
                 .findOne({where: {id: user.id}})
                 .then(async (users_creds) => {
                     if (bcrypt.compareSync(password, users_creds.password)) {
-                        return await createToken(user)
+                        return user
                     } else {
                         return new Error("Неверный логин или пароль")
                     }
                 })
         })
         .catch((err) => {
-            return new Error("Ошибка БД")
+            return new Error("Ошибка БД " + err)
         })
 }
 
@@ -182,7 +147,7 @@ module.exports = {
     deleteUser,
     deleteTeam,
     changeTeam,
-    createToken,
+    addToken,
     newRefreshToken,
     removeToken,
     registration,

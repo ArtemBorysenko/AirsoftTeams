@@ -1,7 +1,14 @@
-const express = require('express');
-const cntrl = require('../controllers/auth');
-const router = new express.Router();
+const express = require("express")
+const cntrl = require("../controllers/auth")
+const router = new express.Router()
 
-router.post('/', cntrl.refreshToken);
+router.post("/", async (req, res, next) => {
+    const error = await cntrl.refreshToken(req.body.refreshToken)
 
-module.exports = router;
+    if (error instanceof Error) {
+        res.status(400).json(error.message)
+    }
+    res.status(200).json(error)
+})
+
+module.exports = router

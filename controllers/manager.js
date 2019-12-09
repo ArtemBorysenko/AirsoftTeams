@@ -1,68 +1,71 @@
 const db = require("../models/database/db")
 
-async function getManager(req, res) {
-    // TODO return straint в route ответы переснести в роутер
-    db.getById(req.params.id)
-        .then((results) => {
-            if (results && results.user_role === "Manager") {
-                res.json(results)
-            } else {
-                res.status(400).json({err: "Manager not found"})
-            }
-        })
-        .catch((err) => {
-            res.status(400).json({err: err.message})
-        })
-}
-
-async function getAllManagers(req, res) {
-    db.getAllByUser_role("Manager")
-        .then((results) => {
-            if (results) {
-                res.json(results)
-            } else {
-                res.status(400).json({err: "Managers not found"})
-            }
-        })
-        .catch((err) => {
-            res.status(400).json({err: err.message})
-        })
-}
-
-async function approvingManager(req, res, next) {
-    db.getById(req.params.id)
+async function getManager(id) {
+    // Сделал TODO return strint в route ответы переснести в роутер
+    return db
+        .getById(id)
         .then((user) => {
             if (user && user.user_role === "Manager") {
-                db.approving(req.params.id, req.body.comment)
-                res.send("Менеджер подтвержден")
-                next()
+                return user
             } else {
-                res.status(400).json({err: "Manager not found"})
+                return new Error("Manager not found")
             }
         })
         .catch((err) => {
-            res.status(400).json({err: err.message})
+            return new Error("Manager not found" + err)
         })
 }
 
-async function blockingManager(req, res) {
-    db.getById(req.params.id)
+async function getAllManagers() {
+    return db
+        .getAllByUser_role("Manager")
         .then((user) => {
-            if (user && user.user_role === "Manager") {
-                db.blocking(req.params.id, req.body.comment)
-                res.send("Менеджер заблокирован")
+            if (user) {
+                return user
             } else {
-                res.status(400).json({err: "Manager not found"})
+                return new Error("Managers not found")
             }
         })
         .catch((err) => {
-            res.status(400).json({err: err.message})
+            return new Error("Managers not found" + err)
+        })
+}
+
+async function approvingManager(id, comment) {
+    return db
+        .getById(id)
+        .then((user) => {
+            if (user && user.user_role === "Manager") {
+                db.approving(user.id, comment)
+                return "Менеджер подтвержден"
+            } else {
+                return new Error("Manager not found")
+            }
+        })
+        .catch((err) => {
+            return new Error("Manager not found" + err)
+        })
+}
+
+async function blockingManager(id, comment) {
+    return db
+        .getById(id)
+        .then((user) => {
+            if (user && user.user_role === "Manager") {
+                db.blocking(user.id, comment)
+                return "Менеджер заблокирован"
+            } else {
+                return new Error("Manager not found")
+            }
+        })
+        .catch((err) => {
+            return new Error("Manager not found" + err)
         })
 }
 
 async function deleteManager(req, res) {
     db.deleteUser(req.params.id)
-    res.send("Менеджер удален")
+    return "Менеджер удален"
 }
 
 module.exports = {

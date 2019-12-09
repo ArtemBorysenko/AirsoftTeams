@@ -14,6 +14,7 @@ const session = require("express-session")({
     resave: true,
     saveUninitialized: true,
 })
+
 const sharedsession = require("express-socket.io-session")
 
 const io = require("socket.io").listen(server)
@@ -50,6 +51,7 @@ app.get("/", function(req, res) {
 app.use("/registration", routerReg)
 app.use("/login", routerLog)
 app.use("/refreshToken", routerRefreshToken)
+app.use("/logout", routerLogout)
 app.use(
     jwtMiddleware({
         secret: config.secret,
@@ -71,7 +73,6 @@ app.use(
 app.use("/admin", routerAdmin)
 app.use("/manager", routerManager)
 app.use("/player", routerPlayer)
-app.use("/logout", routerLogout)
 
 server.listen(3000, function() {
     console.log("Example app listening on port " + server.address().port)
