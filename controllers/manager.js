@@ -1,18 +1,17 @@
 const db = require("../models/database/db")
+const DatabaseError = require("../errors/database-error")
 
 async function getManager(id) {
-    // Сделал TODO return strint в route ответы переснести в роутер
     return db
         .getById(id)
         .then((user) => {
-            if (user && user.user_role === "Manager") {
-                return user
-            } else {
-                return new Error("Manager not found")
+            if (!user || user.user_role !== "Manager") {
+                throw new Error("Manager not found")
             }
+            return user
         })
         .catch((err) => {
-            return new Error("Manager not found" + err)
+            throw new DatabaseError(err)
         })
 }
 
@@ -20,14 +19,13 @@ async function getAllManagers() {
     return db
         .getAllByUser_role("Manager")
         .then((user) => {
-            if (user) {
-                return user
-            } else {
-                return new Error("Managers not found")
+            if (!user) {
+                throw new Error("Managers not found")
             }
+            return user
         })
         .catch((err) => {
-            return new Error("Managers not found" + err)
+            throw new DatabaseError(err)
         })
 }
 
@@ -35,15 +33,14 @@ async function approvingManager(id, comment) {
     return db
         .getById(id)
         .then((user) => {
-            if (user && user.user_role === "Manager") {
-                db.approving(user.id, comment)
-                return "Менеджер подтвержден"
-            } else {
-                return new Error("Manager not found")
+            if (!user || user.user_role !== "Manager") {
+                throw new Error("Manager not found")
             }
+            db.approving(user.id, comment)
+            return "Менеджер подтвержден"
         })
         .catch((err) => {
-            return new Error("Manager not found" + err)
+            throw new DatabaseError(err)
         })
 }
 
@@ -51,21 +48,15 @@ async function blockingManager(id, comment) {
     return db
         .getById(id)
         .then((user) => {
-            if (user && user.user_role === "Manager") {
-                db.blocking(user.id, comment)
-                return "Менеджер заблокирован"
-            } else {
-                return new Error("Manager not found")
+            if (!user || user.user_role !== "Manager") {
+                throw new Error("Manager not found")
             }
+            db.blocking(user.id, comment)
+            return "Менеджер заблокирован"
         })
         .catch((err) => {
-            return new Error("Manager not found" + err)
+            throw new DatabaseError(err)
         })
-}
-
-async function deleteManager(req, res) {
-    db.deleteUser(req.params.id)
-    return "Менеджер удален"
 }
 
 module.exports = {
@@ -73,5 +64,4 @@ module.exports = {
     getAllManagers,
     approvingManager,
     blockingManager,
-    deleteManager,
 }

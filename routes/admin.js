@@ -11,86 +11,82 @@ router.use((req, res, next) => {
 })
 
 router.get("/player/", async (req, res, next) => {
-    const error = await player.getAllPlayers()
-    if (error instanceof Error) {
-        res.status(400).json(error)
-    } else {
-        res.status(200).json(error)
+    try {
+        res.status(200).json(await player.getAllPlayers())
+    } catch (e) {
+        next(e)
     }
 })
 
 router.get("/player/:id", async (req, res, next) => {
-    const error = await player.getPlayer(req.params.id)
-    if (error instanceof Error) {
-        res.status(400).json(error)
-    } else {
-        res.status(200).json(error)
+    try {
+        res.status(200).json(await player.getPlayer(req.params.id))
+    } catch (e) {
+        next(e)
     }
 })
 
 router.get("/manager/", async (req, res, next) => {
-    const error = await manager.getAllManagers()
-    if (error instanceof Error) {
-        res.status(400).json(error)
-    } else {
-        res.status(200).json(error)
+    try {
+        res.status(200).json(await manager.getAllManagers())
+    } catch (e) {
+        next(e)
     }
 })
 
 router.get("/manager/:id", async (req, res, next) => {
-    const error = await manager.getManager(req.params.id)
-    if (error instanceof Error) {
-        res.status(400).json(error)
-    } else {
-        res.status(200).json(error)
+    try {
+        res.status(200).json(await manager.getManager(req.params.id))
+    } catch (e) {
+        next(e)
     }
 })
 
 router.post("/manager/approve/:id", async (req, res, next) => {
-    const error = await manager.approvingManager(
-        req.params.id,
-        req.body.comment,
-    )
-    if (error instanceof Error) {
-        res.status(400).json(error)
-    } else {
-        res.status(200).json(error)
+    try {
+        res.status(200).json(
+            await manager.approvingManager(req.params.id, req.body.comment),
+        )
+    } catch (e) {
+        next(e)
     }
 })
 
 router.post("/manager/blocked/:id", async (req, res, next) => {
-    const error = await manager.blockingManager(req.params.id, req.body.comment)
-    if (error instanceof Error) {
-        res.status(400).json(error)
-    } else {
-        res.status(200).json(error)
+    try {
+        res.status(200).json(
+            await manager.blockingManager(req.params.id, req.body.comment),
+        )
+    } catch (e) {
+        next(e)
     }
 })
 
 router.post("/player/approve/:id", async (req, res, next) => {
-    const error = await player.approvingPlayer(req.params.id, req.body.comment)
-    if (error instanceof Error) {
-        res.status(400).json(error)
-    } else {
-        res.status(200).json(error)
+    try {
+        res.status(200).json(
+            await player.approvingPlayer(req.params.id, req.body.comment),
+        )
+    } catch (e) {
+        next(e)
     }
 })
 
 router.post("/player/blocked/:id", async (req, res, next) => {
-    const error = await player.blockingPlayer(req.params.id, req.body.comment)
-    if (error instanceof Error) {
-        res.status(400).json(error)
-    } else {
-        res.status(200).json(error)
+    try {
+        res.status(200).json(
+            await player.blockingPlayer(req.params.id, req.body.comment),
+        )
+    } catch (e) {
+        next(e)
     }
 })
 
 router.delete("/delete/:id", async (req, res, next) => {
-    const error = await player.deleteUser(req.params.id)
-    if (error instanceof Error) {
-        res.status(400).json(error)
-    } else {
-        res.status(200).json(error)
+    try {
+        res.status(200).json(await player.deleteUser(req.params.id))
+    } catch (e) {
+        next(e)
     }
 })
 

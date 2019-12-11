@@ -2,6 +2,7 @@ const rc = require("rc")
 require("dotenv").config()
 
 module.exports = rc("JWT", {
+    env: process.env.NODE_ENV || "development",
     port: process.env.PORT || 3000,
     secret: process.env.JWT_SECRET || "VERYSECRETKEY_2",
     time: null,
@@ -31,6 +32,7 @@ module.exports = rc("JWT", {
         name:
             process.env.DOCKER_DB_NAME || process.env.DB_NAME || "airsoftteams",
         retries: 5,
+        dialect: "postgres",
         defaultUser: {
             name: process.env.ADMIN_USER || "Admin",
             password: process.env.ADMIN_PASSWORD || "1234",

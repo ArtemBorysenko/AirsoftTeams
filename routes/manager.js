@@ -14,12 +14,11 @@ router.use((req, res, next) => {
 })
 
 router.get("/player/approve_team/:id", async (req, res, next) => {
-    const error = player.approvingTeam(req.params.id)
+    try {
+        const message = await player.approvingTeam(req.params.id)
 
-    if (error instanceof Error) {
-        res.status(400).json(error)
-    } else {
         socketNtfc.ntfcApprove(req)
+
         await mail.mailer({
             from: '"Tetta App" <artemborysenco@gmail.com>',
             to: config.mailPlayer,
@@ -27,44 +26,42 @@ router.get("/player/approve_team/:id", async (req, res, next) => {
             text: "This is the email sent through Gmail SMTP Server.",
         })
 
-        res.status(200).json(error)
+        res.status(200).json(message)
+    } catch (e) {
+        next(e)
     }
 })
 
 router.get("/player/", async (req, res, next) => {
-    const error = await player.getAllPlayers()
-    if (error instanceof Error) {
-        res.status(400).json(error)
-    } else {
-        res.status(200).json(error)
+    try {
+        res.status(200).json(await player.getAllPlayers())
+    } catch (e) {
+        next(e)
     }
 })
 
 router.get("/player/:id", async (req, res, next) => {
-    const error = await player.getPlayer(req.params.id)
-    if (error instanceof Error) {
-        res.status(400).json(error)
-    } else {
-        res.status(200).json(error)
+    try {
+        res.status(200).json(await player.getPlayer(req.params.id))
+    } catch (e) {
+        next(e)
     }
 })
 
 router.get("/team/:id", async (req, res, next) => {
-    const error = await team.getPlayersByTeam(req.params.id)
-    if (error instanceof Error) {
-        res.status(400).json(error)
-    } else {
-        res.status(200).json(error)
+    try {
+        res.status(200).json(await team.getPlayersByTeam(req.params.id))
+    } catch (e) {
+        next(e)
     }
 })
 
 router.delete("/player/team/:id", async (req, res, next) => {
-    const error = await player.deleteFromTeam(req.params.id)
+    try {
+        const message = await player.deleteFromTeam(req.params.id)
 
-    if (error instanceof Error) {
-        res.status(400).json(error)
-    } else {
         socketNtfc.ntfcDeleted(req, res, next)
+
         await mail.mailer({
             from: '"Tetta App" <artemborysenco@gmail.com>',
             to: config.mailPlayer,
@@ -72,7 +69,9 @@ router.delete("/player/team/:id", async (req, res, next) => {
             text: "This is the email sent through Gmail SMTP Server.",
         })
 
-        res.status(200).json(error)
+        res.status(200).json(message)
+    } catch (e) {
+        next(e)
     }
 })
 module.exports = router

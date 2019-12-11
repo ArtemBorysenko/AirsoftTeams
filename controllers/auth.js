@@ -3,70 +3,72 @@ const jwt = require("jsonwebtoken")
 const uuid = require("uuid/v4")
 const config = require("../config")
 const db = require("../models/database/db")
+const ServerError = require("../errors/server-error")
+const DatabaseError = require("../errors/database-error")
 
 async function logIn(username, password) {
-    const user = await db.login(username, password)
+    try {
+        const user = await db.login(username, password)
 
-    const {token, refreshToken} = await createToken(user)
+        const {token, refreshToken} = await createToken(user)
 
-    if (user instanceof Error) {
-        return user
-    } else {
         return await db.addToken(user.id, token, refreshToken)
+    } catch (err) {
+        throw new ServerError(err.message, 422, "Login error")
     }
 }
 
 async function logOut(token) {
-    return await db.removeToken(token)
+    return await db.removeToken(token).catch((err) => {
+        throw new DatabaseError(err)
+    })
 }
 
 async function registration(req, res, next) {
-    const newUser = await db.registration({
-        username: req.body.username,
-        user_role: req.body.user_role,
-        team: req.body.team,
-        isActive: req.body.isActive || false, // isActive = false
-        isBlocked: false,
-        usercred: {
-            password: bcrypt.hashSync(
-                req.body.password,
-                bcrypt.genSaltSync(10),
-                null,
-            ),
-        },
-        tokens: {
-            token: null,
-            refreshToken: null,
-        },
-        comment: {
-            blocked: null,
-            deleted: null,
-            actived: null,
-        },
-    })
-
-    return await newUser
+    return await db
+        .registration({
+            username: req.body.username,
+            user_role: req.body.user_role,
+            team: req.body.team,
+            isActive: req.body.isActive || false, // isActive = false
+            isBlocked: false,
+            usercred: {
+                password: bcrypt.hashSync(
+                    req.body.password,
+                    bcrypt.genSaltSync(10),
+                    null,
+                ),
+            },
+            tokens: {
+                token: null,
+                refreshToken: null,
+            },
+            comment: {
+                blocked: null,
+                deleted: null,
+                actived: null,
+            },
+        })
+        .catch((err) => {
+            throw new ServerError(err.message, 422, "Registration error")
+        })
 }
 
 async function refreshToken(userRefreshToken) {
-    const user = await db.newRefreshToken(userRefreshToken)
+    try {
+        const user = await db.newRefreshToken(userRefreshToken)
 
-    const {token, refreshToken} = await createToken(user)
+        const {token, refreshToken} = await createToken(user)
 
-    if (user instanceof Error) {
-        return user
-    } else {
         return await db.addToken(user.id, token, refreshToken)
+    } catch (err) {
+        throw new DatabaseError(err)
     }
 }
 
 async function createToken(user) {
     const refreshToken = uuid()
     const token = jwt.sign(
-        // Сделал TODO вынести из моделей все что не касается БД
-        // проверки ответов БД
-        // перенести в роутеры все
-        // return res.status(400).json({err: err.message});
         {
             id: user.id,
             username: user.username,

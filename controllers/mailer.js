@@ -2,8 +2,6 @@ const nodemailer = require("nodemailer")
 const config = require("../config")
 
 async function mailer(mailOptions) {
-    // Сделал TODO убрать проверки перенести в роуте
-    // Сделал TODO createtestaccount посмтреть
     nodemailer.createTestAccount(() => {
         const transporter = nodemailer.createTransport({
             host: "smtp.googlemail.com",

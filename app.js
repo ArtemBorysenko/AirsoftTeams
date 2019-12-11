@@ -9,13 +9,13 @@ const server = http.createServer(app)
 const path = require("path")
 const logger = require("morgan")
 
-const session = require("express-session")({
-    secret: "my-secret",
-    resave: true,
-    saveUninitialized: true,
-})
-
-const sharedsession = require("express-socket.io-session")
+// const session = require("express-session")({
+//     secret: "my-secret",
+//     resave: true,
+//     saveUninitialized: true,
+// })
+//
+// const sharedsession = require("express-socket.io-session")
 
 const io = require("socket.io").listen(server)
 
@@ -24,10 +24,7 @@ require("./connections/psql-connection.js")
 const routerAdmin = require("./routes/admin")
 const routerManager = require("./routes/manager")
 const routerPlayer = require("./routes/player")
-const routerRefreshToken = require("./routes/refreshToken")
-const routerReg = require("./routes/registration")
-const routerLog = require("./routes/login")
-const routerLogout = require("./routes/logout")
+const routerAuth = require("./routes/auth")
 
 app.use(logger("dev"))
 app.use(bodyParser.json())
@@ -48,10 +45,7 @@ app.get("/", function(req, res) {
     res.send("Hello world!")
 })
 
-app.use("/registration", routerReg)
-app.use("/login", routerLog)
-app.use("/refreshToken", routerRefreshToken)
-app.use("/logout", routerLogout)
+app.use("/auth", routerAuth)
 app.use(
     jwtMiddleware({
         secret: config.secret,
@@ -74,16 +68,25 @@ app.use("/admin", routerAdmin)
 app.use("/manager", routerManager)
 app.use("/player", routerPlayer)
 
+//Сделал TODO заменить все ошибки на  throw error в catch status(500).json(mess)
+app.use((err, req, res, next) => {
+    res.status(err.status || 500)
+    res.json({
+        message: err.message,
+        errors: err.errors,
+    })
+})
+
 server.listen(3000, function() {
     console.log("Example app listening on port " + server.address().port)
 })
 
-io.use(sharedsession(session))
+// io.use(sharedsession(session))
 let count = 0
 
 io.sockets.on("connection", function(socket) {
-    socket.handshake.session.userdata = socket.id
-    socket.handshake.session.save()
+    // socket.handshake.session.userdata = socket.id
+    // socket.handshake.session.save()
 
     const id = count++
 

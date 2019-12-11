@@ -14,39 +14,35 @@ router.use((req, res, next) => {
 })
 
 router.get("/player/", async (req, res, next) => {
-    const error = await player.getAllPlayers()
-    if (error instanceof Error) {
-        res.status(400).json(error)
-    } else {
-        res.status(200).json(error)
+    try {
+        res.status(200).json(await player.getAllPlayers())
+    } catch (e) {
+        next(e)
     }
 })
 
 router.get("/player/:id", async (req, res, next) => {
-    const error = await player.getPlayer(req.params.id)
-    if (error instanceof Error) {
-        res.status(400).json(error)
-    } else {
-        res.status(200).json(error)
+    try {
+        res.status(200).json(await player.getPlayer(req.params.id))
+    } catch (e) {
+        next(e)
     }
 })
 
 router.get("/team/:id", async (req, res, next) => {
-    const error = await team.getPlayersByTeam(req.params.id)
-    if (error instanceof Error) {
-        res.status(400).json(error)
-    } else {
-        res.status(200).json(error)
+    try {
+        res.status(200).json(await team.getPlayersByTeam(req.params.id))
+    } catch (e) {
+        next(e)
     }
 })
 
 router.get("/team/add/:id", async (req, res, next) => {
-    const error = await team.addPlayerInTeam(req.id, req.params.id)
+    try {
+        const message = await team.addPlayerInTeam(req.id, req.params.id)
 
-    if (error instanceof Error) {
-        res.status(400).json(error)
-    } else {
         socketNtfc.ntfcSwitch(req)
+
         await mail.mailer({
             from: '"Tetta App" <artemborysenco@gmail.com>',
             to: config.mailManager,
@@ -54,17 +50,18 @@ router.get("/team/add/:id", async (req, res, next) => {
             text: "This is the email sent through Gmail SMTP Server.",
         })
 
-        res.status(200).json(error)
+        res.status(200).json(message)
+    } catch (e) {
+        next(e)
     }
 })
 
 router.get("/team/switch/:id", async (req, res, next) => {
-    const error = await team.switchTeam(req.params.id)
+    try {
+        const message = await team.switchTeam(req.id)
 
-    if (error instanceof Error) {
-        res.status(400).json(error)
-    } else {
         socketNtfc.ntfcSwitch(req)
+
         await mail.mailer({
             from: '"Tetta App" <artemborysenco@gmail.com>',
             to: config.mailManager,
@@ -72,17 +69,18 @@ router.get("/team/switch/:id", async (req, res, next) => {
             text: "This is the email sent through Gmail SMTP Server.",
         })
 
-        res.status(200).json(error)
+        res.status(200).json(message)
+    } catch (e) {
+        next(e)
     }
 })
 
 router.post("/team/out/", async (req, res, next) => {
-    const error = await team.outPlayerWithTeam(req.id, req.body.comment)
+    try {
+        const message = await team.outPlayerWithTeam(req.id, req.body.comment)
 
-    if (error instanceof Error) {
-        res.status(400).json(error)
-    } else {
         socketNtfc.ntfcSwitch(req)
+
         await mail.mailer({
             from: '"Tetta App" <artemborysenco@gmail.com>',
             to: config.mailManager,
@@ -90,7 +88,9 @@ router.post("/team/out/", async (req, res, next) => {
             text: "This is the email sent through Gmail SMTP Server.",
         })
 
-        res.status(200).json(error)
+        res.status(200).json(message)
+    } catch (e) {
+        next(e)
     }
 })
 

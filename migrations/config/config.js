@@ -1,28 +1,13 @@
-const config = require('../../config')
+const config = require("../../config")
 
+// Сделал TODO настроить
 module.exports = {
-  "development": {
-    "username": "postgres",
-    "password": "q1w2e3r4",
-    "database": "airsoftteams",
-    "host":  config.database.host || "localhost",
-    "dialect": "postgres",
-    "operatorsAliases": 0
-  },
-  "test": {
-    "username": "postgres",
-    "password": "q1w2e3r4",
-    "database": "airsoftteams",
-    "host": "localhost",
-    "dialect": "postgres",
-    "operatorsAliases": 0
-  },
-  "production": {
-    "username": "postgres",
-    "password": "q1w2e3r4",
-    "database": "airsoftteams",
-    "host": "localhost",
-    "dialect": "postgres",
-    "operatorsAliases": 0
-  }
+    [config.env]: {
+        username: config.database.user,
+        password: config.database.password,
+        database: config.database.name,
+        host: config.database.host,
+        port: config.database.port,
+        dialect: config.database.dialect,
+    },
 }

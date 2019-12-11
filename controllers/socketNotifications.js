@@ -1,36 +1,47 @@
 const config = require("../config")
 
 function ntfcReg(req) {
-    if (req.body.user_role === "Manager") {
-        req.io.sockets.to(config.rooms[0]).emit("Manager_is_reg", " message")
+    try {
+        if (req.body.user_role === "Manager") {
+            req.io.sockets
+                .to(config.rooms[0])
+                .emit("Manager_is_reg", " message")
+        }
+    } catch (e) {
+        console.log("error ntfcReg" + e)
     }
-    console.log("ntfcReg")
 }
 function ntfcApprove(req) {
-    req.io.sockets
-        .to(config.rooms[0])
-        .to(config.rooms[2])
-        .emit("Player_is_approved", " message")
-
-    console.log("ntfcApprove")
+    try {
+        req.io.sockets
+            .to(config.rooms[0])
+            .to(config.rooms[2])
+            .emit("Player_is_approved", " message")
+    } catch (e) {
+        console.log("error ntfcApprove" + e)
+    }
 }
 
 function ntfcSwitch(req) {
-    req.io.sockets
-        .to(config.rooms[0])
-        .to(config.rooms[1])
-        .emit("Player_switch_team", " message")
-
-    console.log("ntfcSwitch")
+    try {
+        req.io.sockets
+            .to(config.rooms[0])
+            .to(config.rooms[1])
+            .emit("Player_switch_team", " message")
+    } catch (e) {
+        console.log("error ntfcSwitch" + e)
+    }
 }
 
 function ntfcDeleted(req) {
-    req.io.sockets
-        .to(config.rooms[0])
-        .to(config.rooms[2])
-        .emit("Player_is_deleted", " message")
-
-    console.log("ntfcDeleted")
+    try {
+        req.io.sockets
+            .to(config.rooms[0])
+            .to(config.rooms[2])
+            .emit("Player_is_deleted", " message")
+    } catch (e) {
+        console.log("error ntfcDeleted" + e)
+    }
 }
 
 module.exports = {
