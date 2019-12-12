@@ -6,7 +6,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "mocha --exit",
+    "test": "mocha",
     "create-db": "node ./migrations/scripts/create-db.js",
     "db-migrate-create": "sequelize migration:create --name [new_migration_name]",
     "db-migrate-up": "sequelize db:migrate",
@@ -37,6 +37,7 @@
     "pg": "^7.14.0",
     "pg-hstore": "^2.3.3",
     "rc": "^1.2.8",
+    "request": "^2.88.0",
     "sequelize": "^5.21.1",
     "sequelize-cli": "^5.5.1",
     "socket.io": "^2.3.0",

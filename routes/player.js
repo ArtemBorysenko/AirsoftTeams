@@ -8,7 +8,7 @@ const router = express.Router()
 
 router.use((req, res, next) => {
     if (req.role !== "Player") {
-        res.status(401).json(req.role + " Доступ запрещен")
+        res.status(403).json(req.role + " Доступ запрещен")
     }
     next()
 })
@@ -56,7 +56,7 @@ router.get("/team/add/:id", async (req, res, next) => {
     }
 })
 
-router.get("/team/switch/:id", async (req, res, next) => {
+router.get("/switch/team/", async (req, res, next) => {
     try {
         const message = await team.switchTeam(req.id)
 

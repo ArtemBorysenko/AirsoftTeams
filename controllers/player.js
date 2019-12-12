@@ -62,7 +62,7 @@ async function blockingPlayer(id, comment) {
 async function deleteUser(id) {
     try {
         db.deleteUser(id)
-        return res.send("пользователь удален")
+        return "пользователь удален"
     } catch (err) {
         throw new DatabaseError(err)
     }

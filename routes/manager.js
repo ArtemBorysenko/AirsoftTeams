@@ -8,7 +8,7 @@ const router = express.Router()
 
 router.use((req, res, next) => {
     if (req.role !== "Manager") {
-        res.status(401).json(req.role + " Доступ запрещен")
+        res.status(403).json(req.role + " Доступ запрещен")
     }
     next()
 })

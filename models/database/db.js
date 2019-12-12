@@ -61,22 +61,14 @@ async function blocking(paramsId, comment) {
 }
 
 async function deleteUser(paramsId) {
-    sequelize.models.users.destroy({where: {id: paramsId}}).catch((err) => {
+    try {
+        sequelize.models.users.destroy({where: {id: paramsId}})
+        sequelize.models.users_creds.destroy({where: {id: paramsId}})
+        sequelize.models.users_tokens.destroy({where: {id: paramsId}})
+        sequelize.models.comments.destroy({where: {id: paramsId}})
+    } catch (err) {
         throw err
-    })
-    sequelize.models.users_creds
-        .destroy({where: {id: paramsId}})
-        .catch((err) => {
-            throw err
-        })
-    sequelize.models.users_tokens
-        .destroy({where: {id: paramsId}})
-        .catch((err) => {
-            throw err
-        })
-    sequelize.models.comments.destroy({where: {id: paramsId}}).catch((err) => {
-        throw err
-    })
+    }
 }
 
 async function deleteTeam(paramsId, comment) {

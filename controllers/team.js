@@ -57,13 +57,13 @@ async function switchTeam(id) {
         .then((user) => {
             if (
                 !user ||
-                user.user_role !== "Player" ||
-                (user.team !== "B" && user.team !== "A")
+                user.user_role !== "Player"
+                //(user.team !== "B" && user.team !== "A")
             ) {
                 return new Error("Team not found")
             }
-            if (user.team === "A") db.changeTeam(user.id, "B")
-            if (user.team === "B") db.changeTeam(user.id, "A")
+            if (user.team === "A") db.changeTeam(user.id, "B", "switch team")
+            if (user.team === "B") db.changeTeam(user.id, "A", "switch team")
             return "Запрос отправлен"
         })
         .catch((err) => {

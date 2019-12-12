@@ -128,6 +128,4 @@ io.sockets.on("connection", function(socket) {
     })
 })
 
-module.exports = {
-    app,
-}
+module.exports = app
