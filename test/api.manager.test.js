@@ -26,7 +26,7 @@ describe("Check manager functionality  ", function() {
     })
 
     before((done) => {
-        testHelper.getTokens("Manager700@test.ru", "1234", (err, result) => {
+        testHelper.getTokens("Manager800@test.io", "1234", (err, result) => {
             if (err) done(err)
 
             accessToken = result.accessToken
@@ -72,7 +72,7 @@ describe("Check manager functionality  ", function() {
 
     it("manager can delete player from team", function(done) {
         chai.request(app)
-            .delete("/manager/player/team/14")
+            .delete("/manager/player/team/700")
             .set("Authorization", `Bearer ${accessToken}`)
             .end(async function(err, res) {
                 expect(res).to.have.status(200)
@@ -82,7 +82,7 @@ describe("Check manager functionality  ", function() {
 
     it("manager can approve adding a player to the team", function(done) {
         chai.request(app)
-            .get("/manager/player/approve_team/15")
+            .get("/manager/player/approve_team/700")
             .set("Authorization", `Bearer ${accessToken}`)
             .end(async function(err, res) {
                 expect(res).to.have.status(200)

@@ -36,14 +36,14 @@ describe("Check auth functionality (registration, login, refreshtoken, logout)",
     })
 
     after(async () => {
-        await testHelper.deleteUserByName("REGISTRATION@test.ru")
+        await testHelper.deleteUserByName("REGISTRATION@test.io")
     })
 
     it("User can registration", function(done) {
         chai.request(app)
             .post("/auth/registration/")
             .send({
-                username: "REGISTRATION@test.ru",
+                username: "REGISTRATION@test.io",
                 password: "1234",
                 user_role: "Manager",
                 team: "A",
@@ -60,7 +60,7 @@ describe("Check auth functionality (registration, login, refreshtoken, logout)",
         chai.request(app)
             .post("/auth/login/")
             .send({
-                username: "Manager5@test.io",
+                username: "REGISTRATION@test.io",
                 password: "1234",
             })
             .end(async function(err, res) {

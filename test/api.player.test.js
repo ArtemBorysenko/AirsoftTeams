@@ -26,7 +26,7 @@ describe("Check player functionality  ", function() {
     })
 
     before((done) => {
-        testHelper.getTokens("Player700@test.ru", "1234", (err, result) => {
+        testHelper.getTokens("Player700@test.io", "1234", (err, result) => {
             if (err) done(err)
 
             accessToken = result.accessToken
@@ -63,7 +63,7 @@ describe("Check player functionality  ", function() {
 
     it("get player by id", function(done) {
         chai.request(app)
-            .get("/player/player/11")
+            .get("/player/player/700")
             .set("Authorization", `Bearer ${accessToken}`)
             .end(async function(err, res) {
                 if (err) done(err)

@@ -31,7 +31,7 @@ function createTestUser(id, role, password, callback) {
     return db
         .registration({
             id: `${id}`,
-            username: `${role}${id}@test.ru`,
+            username: `${role}${id}@test.io`,
             user_role: `${role}`,
             team: "B",
             isActive: true, // isActive = false
