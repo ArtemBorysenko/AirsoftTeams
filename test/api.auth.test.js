@@ -22,20 +22,28 @@ describe("Check auth functionality (registration, login, refreshtoken, logout)",
     })
 
     before((done) => {
-        testHelper.getTokens("Admin@admin.ru", "1234", (err, result) => {
-            if (err) done(err)
+        testHelper.getTokens(
+            "Admin@airsoftteams.org",
+            "1234",
+            (err, result) => {
+                if (err) done(err)
 
-            accessToken = result.accessToken
-            refreshToken = result.refreshToken
-            done()
-        })
+                accessToken = result.accessToken
+                refreshToken = result.refreshToken
+                done()
+            },
+        )
+    })
+
+    after(async () => {
+        await testHelper.deleteUserByName("REGISTRATION@test.ru")
     })
 
     it("User can registration", function(done) {
         chai.request(app)
             .post("/auth/registration/")
             .send({
-                username: "Managertest47@test.io",
+                username: "REGISTRATION@test.ru",
                 password: "1234",
                 user_role: "Manager",
                 team: "A",
@@ -56,10 +64,8 @@ describe("Check auth functionality (registration, login, refreshtoken, logout)",
                 password: "1234",
             })
             .end(async function(err, res) {
-                // setTimeout(() => {
                 expect(res).to.have.status(200)
                 done()
-                // }, 1000)
             })
     })
 
@@ -70,10 +76,8 @@ describe("Check auth functionality (registration, login, refreshtoken, logout)",
                 refreshToken: refreshToken,
             })
             .end(async function(err, res) {
-                // setTimeout(() => {
                 expect(res).to.have.status(200)
                 done()
-                // }, 1000)
             })
     })
 
@@ -82,10 +86,8 @@ describe("Check auth functionality (registration, login, refreshtoken, logout)",
             .get("/auth/logout/")
             .set("Authorization", `Bearer ${accessToken}`)
             .end(async function(err, res) {
-                // setTimeout(() => {
                 expect(res).to.have.status(200)
                 done()
-                // }, 1000)
             })
     })
 })

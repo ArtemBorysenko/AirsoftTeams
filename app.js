@@ -68,7 +68,6 @@ app.use("/admin", routerAdmin)
 app.use("/manager", routerManager)
 app.use("/player", routerPlayer)
 
-//Сделал TODO заменить все ошибки на  throw error в catch status(500).json(mess)
 app.use((err, req, res, next) => {
     res.status(err.status || 500)
     res.json({

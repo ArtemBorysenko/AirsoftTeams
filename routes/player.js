@@ -4,11 +4,12 @@ const player = require("../controllers/player")
 const mail = require("../controllers/mailer")
 const socketNtfc = require("../controllers/socketNotifications")
 const config = require("../config")
+const ServerError = require("../errors/server-error")
 const router = express.Router()
 
 router.use((req, res, next) => {
     if (req.role !== "Player") {
-        res.status(403).json(req.role + " Доступ запрещен")
+        throw new ServerError(`${req.role} Доступ запрещен`)
     }
     next()
 })
@@ -44,7 +45,7 @@ router.get("/team/add/:id", async (req, res, next) => {
         socketNtfc.ntfcSwitch(req)
 
         await mail.mailer({
-            from: '"Tetta App" <artemborysenco@gmail.com>',
+            from: '"Tetta TEST" <artemborysenco@gmail.com>',
             to: config.mailManager,
             subject: "player add",
             text: "This is the email sent through Gmail SMTP Server.",
@@ -63,7 +64,7 @@ router.get("/switch/team/", async (req, res, next) => {
         socketNtfc.ntfcSwitch(req)
 
         await mail.mailer({
-            from: '"Tetta App" <artemborysenco@gmail.com>',
+            from: '"Tetta TEST" <artemborysenco@gmail.com>',
             to: config.mailManager,
             subject: "player switch",
             text: "This is the email sent through Gmail SMTP Server.",
@@ -82,7 +83,7 @@ router.post("/team/out/", async (req, res, next) => {
         socketNtfc.ntfcSwitch(req)
 
         await mail.mailer({
-            from: '"Tetta App" <artemborysenco@gmail.com>',
+            from: '"Tetta TEST" <artemborysenco@gmail.com>',
             to: config.mailManager,
             subject: "player out",
             text: "This is the email sent through Gmail SMTP Server.",

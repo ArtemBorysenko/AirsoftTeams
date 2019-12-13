@@ -172,6 +172,21 @@ async function login(username, password) {
         })
 }
 
+async function deleteUserByName(params) {
+    try {
+        sequelize.models.users
+            .findAll({where: {username: params}})
+            .then((user) => {
+                sequelize.models.users.destroy({where: {id: user[0].id}})
+                sequelize.models.users_creds.destroy({where: {id: user[0].id}})
+                sequelize.models.users_tokens.destroy({where: {id: user[0].id}})
+                sequelize.models.comments.destroy({where: {id: user[0].id}})
+            })
+    } catch (err) {
+        throw err
+    }
+}
+
 module.exports = {
     getAllByUser_role,
     getAllByTeam,
@@ -180,6 +195,7 @@ module.exports = {
     approvingTeam,
     blocking,
     deleteUser,
+    deleteUserByName,
     deleteTeam,
     changeTeam,
     addToken,

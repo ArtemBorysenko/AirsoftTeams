@@ -26,6 +26,7 @@ function getTokens(username, password, callback) {
     )
 }
 
+// Создавать и удалять пользователя через контролер или через запрос
 function createTestUser(id, role, password, callback) {
     return db
         .registration({
@@ -55,8 +56,8 @@ function createTestUser(id, role, password, callback) {
                 actived: null,
             },
         })
-        .then((err) => {
-            callback(err)
+        .then(() => {
+            return Promise.resolve()
         })
 }
 
@@ -64,4 +65,5 @@ module.exports = {
     getTokens,
     createTestUser,
     deleteUser: db.deleteUser,
+    deleteUserByName: db.deleteUserByName,
 }

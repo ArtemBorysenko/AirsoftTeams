@@ -20,14 +20,27 @@ describe("Check admin functionality  ", function() {
         await new Promise((res) => setTimeout(res, 1500))
     })
 
-    before((done) => {
-        testHelper.getTokens("Admin@admin.ru", "1234", (err, result) => {
-            if (err) done(err)
+    before(async () => {
+        await testHelper.createTestUser("700", "Player", "1234")
+        await testHelper.createTestUser("800", "Manager", "1234")
+    })
 
-            accessToken = result.accessToken
-            refreshToken = result.refreshToken
-            done()
-        })
+    before((done) => {
+        testHelper.getTokens(
+            "Admin@airsoftteams.org",
+            "1234",
+            (err, result) => {
+                if (err) done(err)
+
+                accessToken = result.accessToken
+                refreshToken = result.refreshToken
+                done()
+            },
+        )
+    })
+
+    after(async () => {
+        await testHelper.deleteUser(800)
     })
 
     it("get all managers", function(done) {
@@ -43,7 +56,7 @@ describe("Check admin functionality  ", function() {
 
     it("get manager by id", function(done) {
         chai.request(app)
-            .get("/admin/manager/17")
+            .get("/admin/manager/800")
             .set("Authorization", `Bearer ${accessToken}`)
             .end(async function(err, res) {
                 if (err) done(err)
@@ -65,7 +78,7 @@ describe("Check admin functionality  ", function() {
 
     it("get player by id", function(done) {
         chai.request(app)
-            .get("/admin/player/11")
+            .get("/admin/player/700")
             .set("Authorization", `Bearer ${accessToken}`)
             .end(async function(err, res) {
                 if (err) done(err)
@@ -76,7 +89,7 @@ describe("Check admin functionality  ", function() {
 
     it("activonition user", function(done) {
         chai.request(app)
-            .post("/admin/player/approve/11")
+            .post("/admin/player/approve/700")
             .set("Authorization", `Bearer ${accessToken}`)
             .end(async function(err, res) {
                 if (err) done(err)
@@ -87,7 +100,7 @@ describe("Check admin functionality  ", function() {
 
     it("blocking user", function(done) {
         chai.request(app)
-            .post("/admin/player/blocked/12")
+            .post("/admin/player/blocked/700")
             .set("Authorization", `Bearer ${accessToken}`)
             .end(async function(err, res) {
                 if (err) done(err)
@@ -98,7 +111,7 @@ describe("Check admin functionality  ", function() {
 
     it("delete user by id", function(done) {
         chai.request(app)
-            .delete("/admin/delete/29")
+            .delete("/admin/delete/700")
             .set("Authorization", `Bearer ${accessToken}`)
             .end(async function(err, res) {
                 if (err) done(err)

@@ -10,11 +10,14 @@ services:
       - DOCKER_DB_PORT=5432
       - DOCKER_DB_NAME=airsoftteams
       - POSTGRES_HOST=postgresql
-    command: bash -c "npm run db-migrate-up && npm run db-seeders-up && node app.js"
+      - WAIT_HOSTS=postgresql:5432
+    #    command: bash -c "npm run db-migrate-up && npm run db-seeders-up && node app.js"
     ports:
       - "3000:3000"
     depends_on:
-    - postgresql
+      - postgresql
+    links:
+      - postgresql
   postgresql:
     container_name: "postgresql"
     image: postgres:11.5

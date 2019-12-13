@@ -17,5 +17,3 @@ module.exports = [
         .isLength({max: 6})
         .withMessage("must be equal 'want A', 'want B'"),
 ]
-
-// сделал TODO описание ошибок в поле description

@@ -1,6 +1,5 @@
 const config = require("../../config")
 
-// Сделал TODO настроить
 module.exports = {
     [config.env]: {
         username: config.database.user,

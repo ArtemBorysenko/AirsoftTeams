@@ -22,7 +22,7 @@ router.post("/registration/", registerValidation, async (req, res, next) => {
 
         if (req.body.user_role === "Manager") {
             await mail.mailer({
-                from: '"Tetta App" <artemborysenco@gmail.com>',
+                from: '"Tetta TEST" <artemborysenco@gmail.com>',
                 to: config.mailAdmin,
                 subject: `Manager ${req.body.username} is registrated`,
                 text: "This is the email sent through Gmail SMTP Server.",

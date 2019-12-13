@@ -4,11 +4,12 @@ const player = require("../controllers/player")
 const mail = require("../controllers/mailer")
 const socketNtfc = require("../controllers/socketNotifications")
 const config = require("../config")
+const ServerError = require("../errors/server-error")
 const router = express.Router()
 
 router.use((req, res, next) => {
     if (req.role !== "Manager") {
-        res.status(403).json(req.role + " Доступ запрещен")
+        throw new ServerError(`${req.role} Доступ запрещен`)
     }
     next()
 })
@@ -20,7 +21,7 @@ router.get("/player/approve_team/:id", async (req, res, next) => {
         socketNtfc.ntfcApprove(req)
 
         await mail.mailer({
-            from: '"Tetta App" <artemborysenco@gmail.com>',
+            from: '"Tetta TEST" <artemborysenco@gmail.com>',
             to: config.mailPlayer,
             subject: "player approve",
             text: "This is the email sent through Gmail SMTP Server.",
@@ -63,7 +64,7 @@ router.delete("/player/team/:id", async (req, res, next) => {
         socketNtfc.ntfcDeleted(req, res, next)
 
         await mail.mailer({
-            from: '"Tetta App" <artemborysenco@gmail.com>',
+            from: '"Tetta TEST" <artemborysenco@gmail.com>',
             to: config.mailPlayer,
             subject: "player left team",
             text: "This is the email sent through Gmail SMTP Server.",

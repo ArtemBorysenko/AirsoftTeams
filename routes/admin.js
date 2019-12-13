@@ -1,11 +1,12 @@
 const express = require("express")
 const manager = require("../controllers/manager")
 const player = require("../controllers/player")
+const ServerError = require("../errors/server-error")
 const router = express.Router()
 
 router.use((req, res, next) => {
     if (req.role !== "Admin") {
-        res.status(403).json(req.role + " Доступ запрещен")
+        throw new ServerError(`${req.role} Доступ запрещен`)
     }
     next()
 })

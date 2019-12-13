@@ -21,11 +21,8 @@ describe("Check player functionality  ", function() {
         await new Promise((res) => setTimeout(res, 1500))
     })
 
-    before((done) => {
-        testHelper.createTestUser("700", "Player", "1234", (err) => {
-            // if (err) done(err)
-            done()
-        })
+    before(async () => {
+        await testHelper.createTestUser("700", "Player", "1234")
     })
 
     before((done) => {
@@ -38,8 +35,8 @@ describe("Check player functionality  ", function() {
         })
     })
 
-    after(() => {
-        testHelper.deleteUser(700)
+    after(async () => {
+        await testHelper.deleteUser(700)
     })
 
     it("get all players", function(done) {
