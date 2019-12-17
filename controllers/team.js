@@ -51,19 +51,26 @@ async function outPlayerWithTeam(id, comment) {
         })
 }
 
-async function switchTeam(id) {
+async function switchTeam(id, comment) {
     return db
         .getById(id)
         .then((user) => {
             if (
-                !user ||
-                user.user_role !== "Player"
-                //(user.team !== "B" && user.team !== "A")
+                !user
+                // убрать поверки и А и Б user.user_role !== "Player" ||
+                // (user.team !== "B" && user.team !== "A")
             ) {
                 return new Error("Team not found")
             }
-            if (user.team === "A") db.changeTeam(user.id, "B", "switch team")
-            if (user.team === "B") db.changeTeam(user.id, "A", "switch team")
+            // TODO уерать "A" и "B"  из кода
+            // изменить А на 1 Б на 2
+            // соззадть таблицу для названий команд
+            // убрать даты
+            // отдельная таблица ид тим статус(пендинг, апрус, деклаинд) время выводить все таблицу
+
+            // switch перендават в пост
+            if (user.team === "A") db.changeTeam(user.id, "B", comment)
+            if (user.team === "B") db.changeTeam(user.id, "A", comment)
             return "Запрос отправлен"
         })
         .catch((err) => {

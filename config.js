@@ -14,24 +14,17 @@ module.exports = rc("JWT", {
     BOT_EMAIL: process.env.BOT_MAIL_USERNAME || "artem.BOT@computools.com",
     BOT_PASSWORD: process.env.BOT_MAIL_PASSWORD || "12345",
 
-    Admins: {},
-    Managers: {},
-    Players: {},
     users: {},
 
     rooms: ["Admin", "Manager", "Player"],
 
     database: {
-        user: process.env.DOCKER_DB_USER || process.env.DB_USER || "postgres",
-        password:
-            process.env.DOCKER_DB_PASSWORD ||
-            process.env.DB_PASSWORD ||
-            "q1w2e3r4",
+        user: process.env.DB_USER || "postgres",
+        password: process.env.DB_PASSWORD || "q1w2e3r4",
         host: process.env.POSTGRES_HOST || "localhost",
         port: process.env.DOCKER_DB_PORT || "5432",
-        name:
-            process.env.DOCKER_DB_NAME || process.env.DB_NAME || "airsoftteams",
-        retries: 5,
+        name: process.env.DB_NAME || "airsoftteams",
+        retries: 10,
         dialect: "postgres",
         defaultUser: {
             name: process.env.ADMIN_USER || "Admin",

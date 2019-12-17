@@ -1,13 +1,8 @@
 const chai = require("chai")
 const expect = chai.expect //should
-const supertest = require("supertest")
 const chaiHttp = require("chai-http")
 const app = require("../app")
-const issueToken = require("./helpers")
 const testHelper = require("./helpers/test-helpers")
-const config = require("../config")
-
-const users = require("../test/data/testUsers")
 
 chai.use(chaiHttp)
 
@@ -16,10 +11,6 @@ let refreshToken
 
 describe("Check auth functionality (registration, login, refreshtoken, logout)", function() {
     this.timeout(5000)
-
-    before(async function() {
-        await new Promise((res) => setTimeout(res, 1500))
-    })
 
     before((done) => {
         testHelper.getTokens(

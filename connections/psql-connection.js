@@ -5,7 +5,6 @@ let retries = config.database.retries
 async function connection() {
     while (retries) {
         try {
-            // await sequelize.sync()
             await sequelize
                 .authenticate()
                 .then(() => {
@@ -19,7 +18,7 @@ async function connection() {
             console.log(err)
             retries--
             console.log(`retries left: ${retries}`)
-            await new Promise((res) => setTimeout(res, 5000))
+            await new Promise((res) => setTimeout(res, 1000))
         }
     }
 }

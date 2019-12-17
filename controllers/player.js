@@ -68,14 +68,14 @@ async function deleteUser(id) {
     }
 }
 
-async function deleteFromTeam(id) {
+async function deleteFromTeam(id, comment) {
     return db
         .getById(id)
         .then((user) => {
             if (!user || user.user_role !== "Player") {
                 throw new Error("Player not found")
             }
-            db.deleteTeam(id, null)
+            db.deleteTeam(id, comment)
             return "Игрок удален из команды"
         })
         .catch((err) => {

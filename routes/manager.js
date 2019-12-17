@@ -59,7 +59,10 @@ router.get("/team/:id", async (req, res, next) => {
 
 router.delete("/player/team/:id", async (req, res, next) => {
     try {
-        const message = await player.deleteFromTeam(req.params.id)
+        const message = await player.deleteFromTeam(
+            req.params.id,
+            req.body.comment,
+        )
 
         socketNtfc.ntfcDeleted(req, res, next)
 

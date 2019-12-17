@@ -26,6 +26,8 @@ const routerManager = require("./routes/manager")
 const routerPlayer = require("./routes/player")
 const routerAuth = require("./routes/auth")
 
+const getServerStatus = require("./controllers/conectionStatus")
+
 app.use(logger("dev"))
 app.use(bodyParser.json())
 app.use(
@@ -41,8 +43,12 @@ app.use(function(req, res, next) {
     next()
 })
 
-app.get("/", function(req, res) {
-    res.send("Hello world!")
+app.get("/echo", function(req, res) {
+    res.status(200).json({Server: "online"})
+})
+
+app.get("/status", async function(req, res) {
+    res.status(200).json(await getServerStatus.getServerStatus())
 })
 
 app.use("/auth", routerAuth)

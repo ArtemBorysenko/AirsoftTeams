@@ -27,13 +27,13 @@ function getTokens(username, password, callback) {
 }
 
 // Создавать и удалять пользователя через контролер или через запрос
-function createTestUser(id, role, password, callback) {
+function createTestUser(id, role, password, team) {
     return db
         .registration({
             id: `${id}`,
             username: `${role}${id}@test.io`,
             user_role: `${role}`,
-            team: "B",
+            team: team || "A",
             isActive: true, // isActive = false
             isBlocked: false,
             usercred: {

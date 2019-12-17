@@ -59,7 +59,7 @@ router.get("/team/add/:id", async (req, res, next) => {
 
 router.get("/switch/team/", async (req, res, next) => {
     try {
-        const message = await team.switchTeam(req.id)
+        const message = await team.switchTeam(req.id, req.body.comment)
 
         socketNtfc.ntfcSwitch(req)
 
