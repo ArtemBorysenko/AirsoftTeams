@@ -25,20 +25,6 @@ module.exports = {
                     updatedAt: new Date(),
                 },
             ]),
-
-            queryInterface.bulkInsert("users", [
-                {
-                    username: "Admin@airsoftteams.org",
-                    user_role: "Admin",
-                    team: null,
-                    isBlocked: false,
-                    isActive: true,
-                    usercredId: 1,
-                    commentId: 1,
-                    createdAt: new Date(),
-                    updatedAt: new Date(),
-                },
-            ]),
         ]),
 
     down: (queryInterface, Sequelize) => {

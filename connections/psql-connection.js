@@ -5,6 +5,7 @@ let retries = config.database.retries
 async function connection() {
     while (retries) {
         try {
+            await sequelize.sync()
             await sequelize
                 .authenticate()
                 .then(() => {
@@ -24,7 +25,14 @@ async function connection() {
 }
 connection()
 
-const modelNames = ["users", "users_creds", "users_tokens", "comments"]
+const modelNames = [
+    "users",
+    "names_teams",
+    "users_creds",
+    "users_tokens",
+    "comments",
+    "status_players",
+]
 for (const modelName of modelNames) {
     sequelize.import(`../models/database/${modelName}.js`)
 }

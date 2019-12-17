@@ -3,27 +3,15 @@
 module.exports = {
     up: (queryInterface, DataTypes) =>
         Promise.all([
-            queryInterface.createTable("users", {
+            queryInterface.createTable("names_teams", {
                 id: {
                     type: DataTypes.INTEGER,
                     autoIncrement: true,
                     unique: true,
                 },
-                username: {
+                name: {
                     type: DataTypes.STRING,
                     unique: true,
-                },
-                user_role: {
-                    type: DataTypes.ENUM("Player", "Manager", "Admin"),
-                },
-                teamId: {
-                    type: DataTypes.INTEGER,
-                },
-                isActive: {
-                    type: DataTypes.BOOLEAN,
-                },
-                isBlocked: {
-                    type: DataTypes.BOOLEAN,
                 },
                 createdAt: {
                     type: DataTypes.DATE,
@@ -32,12 +20,6 @@ module.exports = {
                 updatedAt: {
                     type: DataTypes.DATE,
                     defaultValue: DataTypes.NOW,
-                },
-                usercredId: {
-                    type: DataTypes.INTEGER,
-                },
-                commentId: {
-                    type: DataTypes.INTEGER,
                 },
             }),
         ]),

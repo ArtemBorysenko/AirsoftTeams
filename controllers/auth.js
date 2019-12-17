@@ -29,7 +29,7 @@ async function registration(req, res, next) {
         .registration({
             username: req.body.username,
             user_role: req.body.user_role,
-            team: req.body.team,
+            //teamId: 1,
             isActive: req.body.isActive || false, // isActive = false
             isBlocked: false,
             usercred: {
@@ -47,6 +47,12 @@ async function registration(req, res, next) {
                 blocked: null,
                 deleted: null,
                 actived: null,
+            },
+            status: {
+                status: "pending",
+            },
+            team: {
+                name: req.body.team,
             },
         })
         .catch((err) => {
