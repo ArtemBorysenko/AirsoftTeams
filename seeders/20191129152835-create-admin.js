@@ -4,8 +4,20 @@ const bcrypt = require("bcryptjs")
 module.exports = {
     up: (queryInterface, Sequelize) =>
         Promise.all([
+            queryInterface.bulkInsert("users", [
+                {
+                    username: "Admin@airsoftteams.org",
+                    user_role: "Admin",
+                    isBlocked: false,
+                    isActive: true,
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+            ]),
+
             queryInterface.bulkInsert("comments", [
                 {
+                    commentId: 1,
                     blocked: null,
                     deleted: null,
                     actived: null,
@@ -16,6 +28,7 @@ module.exports = {
 
             queryInterface.bulkInsert("users_creds", [
                 {
+                    usercredId: 1,
                     password: bcrypt.hashSync(
                         process.env.DB_ADMIN_PASSWORD || "1234",
                         bcrypt.genSaltSync(10),

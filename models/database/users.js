@@ -22,9 +22,9 @@ module.exports = (sequelize, DataTypes) => {
         // созадет в таблцицу user {{ usercred + Id }} с таблциы user_cred id
 
         users.hasOne(models.users_creds, {as: "usercred"}) // FK_userId
-        users.hasMany(models.users_tokens, {as: "tokens"}) // FK_userId
+        users.hasOne(models.users_tokens, {as: "token"}) // FK_userId
         users.hasOne(models.comments, {as: "comment"}) // FK_userId
-        users.hasMany(models.names_teams, {as: "team"}) // FK_userId
+        users.belongsTo(models.names_teams, {as: "team"}) // FK_userId
         users.hasOne(models.status_players, {as: "status"}) // FK_userId
 
         // users.belongsTo(models.users_creds, {as: "usercred"})

@@ -1,14 +1,19 @@
 "use strict"
-const bcrypt = require("bcryptjs")
 
 module.exports = {
     up: (queryInterface, Sequelize) =>
         Promise.all([
-            queryInterface.bulkInsert("users_tokens", [
+            queryInterface.bulkInsert("names_teams", [
                 {
-                    tokenId: 1,
-                    token: null,
-                    refreshToken: null,
+                    name: "A",
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                },
+            ]),
+
+            queryInterface.bulkInsert("names_teams", [
+                {
+                    name: "B",
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },

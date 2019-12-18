@@ -1,8 +1,8 @@
-const sequelize = require("../../connections/database")
+const sequelize = require("../connections/database")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const uuid = require("uuid/v4")
-const config = require("../../config")
+const config = require("../config")
 
 async function getAllByUser_role(params) {
     return sequelize.models.users
@@ -135,7 +135,7 @@ async function removeToken(token) {
         })
 }
 
-async function registration(newUser) {
+async function registration(newUser, team) {
     return await sequelize.models.users
         .findOne({where: {username: newUser.username}})
         .then((user) => {
@@ -145,15 +145,6 @@ async function registration(newUser) {
             return sequelize.models.users
                 .create(newUser, {
                     include: [{all: true}],
-                })
-                .then(async (user) => {
-                    const team = await sequelize.models.names_teams.findOne({
-                        where: {name: newUser.team.name},
-                    })
-                    await sequelize.models.status_players.update(
-                        {namesTeamId: team.id},
-                        {where: {statusId: user.id}},
-                    )
                 })
                 .then(() => {
                     return "Пользователь зарегистрировался"

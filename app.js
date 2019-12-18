@@ -134,3 +134,6 @@ io.sockets.on("connection", function(socket) {
 })
 
 module.exports = app
+// добавить А и Б в миграциию
+// TODO выкинеуть бд  с моделей в auth.js team.js ...
+// todo переписать названия методов подробнее

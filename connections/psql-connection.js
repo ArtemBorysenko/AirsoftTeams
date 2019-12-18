@@ -5,7 +5,7 @@ let retries = config.database.retries
 async function connection() {
     while (retries) {
         try {
-            await sequelize.sync()
+            //await sequelize.sync()
             await sequelize
                 .authenticate()
                 .then(() => {

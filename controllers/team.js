@@ -1,4 +1,4 @@
-const db = require("../models/database/db")
+const db = require("../models/db")
 const DatabaseError = require("../errors/database-error")
 
 async function getPlayersByTeam(id) {

@@ -1,28 +1,32 @@
-'use strict';
+"use strict"
 
 module.exports = {
-  up: (queryInterface, DataTypes) => Promise.all([
-    queryInterface.createTable('users_creds', {
-      id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        unique: true,
-      },
-      password: {
-        type: DataTypes.STRING
-      },
-      createdAt: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
-      },
-      updatedAt: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
-      },
-    }),
-  ]),
+    up: (queryInterface, DataTypes) =>
+        Promise.all([
+            queryInterface.createTable("users_creds", {
+                id: {
+                    type: DataTypes.INTEGER,
+                    autoIncrement: true,
+                    unique: true,
+                },
+                usercredId: {
+                    type: DataTypes.INTEGER,
+                },
+                password: {
+                    type: DataTypes.STRING,
+                },
+                createdAt: {
+                    type: DataTypes.DATE,
+                    defaultValue: DataTypes.NOW,
+                },
+                updatedAt: {
+                    type: DataTypes.DATE,
+                    defaultValue: DataTypes.NOW,
+                },
+            }),
+        ]),
 
-  down: (queryInterface, Sequelize) => {
-    return Promise.resolve()
-  }
-};
+    down: (queryInterface, Sequelize) => {
+        return Promise.resolve()
+    },
+}

@@ -2,7 +2,7 @@ const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const uuid = require("uuid/v4")
 const config = require("../config")
-const db = require("../models/database/db")
+const db = require("../models/db")
 const ServerError = require("../errors/server-error")
 const DatabaseError = require("../errors/database-error")
 
@@ -26,36 +26,33 @@ async function logOut(token) {
 
 async function registration(req, res, next) {
     return await db
-        .registration({
-            username: req.body.username,
-            user_role: req.body.user_role,
-            //teamId: 1,
-            isActive: req.body.isActive || false, // isActive = false
-            isBlocked: false,
-            usercred: {
-                password: bcrypt.hashSync(
-                    req.body.password,
-                    bcrypt.genSaltSync(10),
-                    null,
-                ),
+        .registration(
+            {
+                username: req.body.username,
+                user_role: req.body.user_role,
+                //teamId: 1,
+                isActive: req.body.isActive || false, // isActive = false
+                isBlocked: false,
+                usercred: {
+                    password: bcrypt.hashSync(
+                        req.body.password,
+                        bcrypt.genSaltSync(10),
+                        null,
+                    ),
+                },
+                token: {
+                    token: null,
+                    refreshToken: null,
+                },
+                comment: {
+                    blocked: null,
+                    deleted: null,
+                    actived: null,
+                },
+                status: {},
             },
-            tokens: {
-                token: null,
-                refreshToken: null,
-            },
-            comment: {
-                blocked: null,
-                deleted: null,
-                actived: null,
-            },
-            team: {
-                name: req.body.team,
-            },
-            status: {
-                status: "pending",
-                //namesTeamsId: 1
-            },
-        })
+            req.body.team,
+        )
         .catch((err) => {
             throw new ServerError(err.message, 422, "Registration error")
         })

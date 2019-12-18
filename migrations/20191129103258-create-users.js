@@ -33,12 +33,6 @@ module.exports = {
                     type: DataTypes.DATE,
                     defaultValue: DataTypes.NOW,
                 },
-                usercredId: {
-                    type: DataTypes.INTEGER,
-                },
-                commentId: {
-                    type: DataTypes.INTEGER,
-                },
             }),
         ]),
 

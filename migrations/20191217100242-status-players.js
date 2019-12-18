@@ -9,10 +9,10 @@ module.exports = {
                     autoIncrement: true,
                     unique: true,
                 },
-                userId: {
+                statusId: {
                     type: DataTypes.INTEGER,
                 },
-                teamId: {
+                namesTeamId: {
                     type: DataTypes.INTEGER,
                 },
                 status: {

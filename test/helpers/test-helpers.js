@@ -2,7 +2,7 @@ const request = require("request")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const uuid = require("uuid/v4")
-const db = require("../../models/database/db")
+const db = require("../../models/db")
 
 function getTokens(username, password, callback) {
     request(
