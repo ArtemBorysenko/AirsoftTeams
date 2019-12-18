@@ -14,9 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     })
 
     names_teams.associate = function(models) {
-        // создать в этой таблице {{ statusplayers + Id }} forgeign key  с таблицы  status_players по id
-        //   names_teams.belongsTo(models.status_players, { as: 'statusplayers' });
-        names_teams.hasOne(models.status_players, {as: "team"})
+        //  names_teams.hasMany(models.users, {as: "team"}) // FK_userId
+        names_teams.hasMany(models.status_players, {as: "namesteams"}) // FK_userId
     }
 
     return names_teams

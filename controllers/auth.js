@@ -48,11 +48,12 @@ async function registration(req, res, next) {
                 deleted: null,
                 actived: null,
             },
-            status: {
-                status: "pending",
-            },
             team: {
                 name: req.body.team,
+            },
+            status: {
+                status: "pending",
+                //namesTeamsId: 1
             },
         })
         .catch((err) => {

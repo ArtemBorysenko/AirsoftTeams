@@ -12,6 +12,7 @@ async function getAllByUser_role(params) {
         })
 }
 
+// TODO users.team больше нет переписать все что с ним ыбло свзяано
 async function getAllByTeam(params) {
     return sequelize.models.users
         .findAll({where: {team: params}})
@@ -144,6 +145,15 @@ async function registration(newUser) {
             return sequelize.models.users
                 .create(newUser, {
                     include: [{all: true}],
+                })
+                .then(async (user) => {
+                    const team = await sequelize.models.names_teams.findOne({
+                        where: {name: newUser.team.name},
+                    })
+                    await sequelize.models.status_players.update(
+                        {namesTeamId: team.id},
+                        {where: {statusId: user.id}},
+                    )
                 })
                 .then(() => {
                     return "Пользователь зарегистрировался"
