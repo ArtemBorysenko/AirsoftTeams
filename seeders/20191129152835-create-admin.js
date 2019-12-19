@@ -17,7 +17,7 @@ module.exports = {
 
             queryInterface.bulkInsert("comments", [
                 {
-                    commentId: 1,
+                    userCommentId: 1,
                     blocked: null,
                     deleted: null,
                     actived: null,
@@ -28,7 +28,7 @@ module.exports = {
 
             queryInterface.bulkInsert("users_creds", [
                 {
-                    usercredId: 1,
+                    userCredId: 1,
                     password: bcrypt.hashSync(
                         process.env.DB_ADMIN_PASSWORD || "1234",
                         bcrypt.genSaltSync(10),

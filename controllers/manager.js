@@ -1,9 +1,9 @@
-const db = require("../models/db")
+const userDB = require("../models/user")
 const DatabaseError = require("../errors/database-error")
 
 async function getManager(id) {
-    return db
-        .getById(id)
+    return userDB
+        .getUserById(id)
         .then((user) => {
             if (!user || user.user_role !== "Manager") {
                 throw new Error("Manager not found")
@@ -16,7 +16,7 @@ async function getManager(id) {
 }
 
 async function getAllManagers() {
-    return db
+    return userDB
         .getAllByUser_role("Manager")
         .then((user) => {
             if (!user) {
@@ -30,13 +30,13 @@ async function getAllManagers() {
 }
 
 async function approvingManager(id, comment) {
-    return db
-        .getById(id)
+    return userDB
+        .getUserById(id)
         .then((user) => {
             if (!user || user.user_role !== "Manager") {
                 throw new Error("Manager not found")
             }
-            db.approving(user.id, comment)
+            userDB.approving(user.id, comment)
             return "Менеджер подтвержден"
         })
         .catch((err) => {
@@ -45,13 +45,13 @@ async function approvingManager(id, comment) {
 }
 
 async function blockingManager(id, comment) {
-    return db
-        .getById(id)
+    return userDB
+        .getUserById(id)
         .then((user) => {
             if (!user || user.user_role !== "Manager") {
                 throw new Error("Manager not found")
             }
-            db.blocking(user.id, comment)
+            userDB.blocking(user.id, comment)
             return "Менеджер заблокирован"
         })
         .catch((err) => {

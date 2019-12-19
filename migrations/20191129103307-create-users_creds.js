@@ -9,7 +9,7 @@ module.exports = {
                     autoIncrement: true,
                     unique: true,
                 },
-                usercredId: {
+                userCredId: {
                     type: DataTypes.INTEGER,
                 },
                 password: {

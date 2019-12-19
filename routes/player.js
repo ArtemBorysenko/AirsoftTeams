@@ -9,7 +9,7 @@ const router = express.Router()
 
 router.use((req, res, next) => {
     if (req.role !== "Player") {
-        throw new ServerError(`${req.role} Доступ запрещен`)
+        throw new ServerError(`${req.role} Доступ запрещен`, 403)
     }
     next()
 })
@@ -57,28 +57,10 @@ router.get("/team/add/:id", async (req, res, next) => {
     }
 })
 
-router.get("/switch/team/", async (req, res, next) => {
-    try {
-        const message = await team.switchTeam(req.id, req.body.comment)
-
-        socketNtfc.ntfcSwitch(req)
-
-        await mail.mailer({
-            from: '"Tetta TEST" <artemborysenco@gmail.com>',
-            to: config.mailManager,
-            subject: "player switch",
-            text: "This is the email sent through Gmail SMTP Server.",
-        })
-
-        res.status(200).json(message)
-    } catch (e) {
-        next(e)
-    }
-})
-
 router.post("/team/out/", async (req, res, next) => {
     try {
-        const message = await team.outPlayerWithTeam(req.id, req.body.comment)
+        const message = await team.deleteFromTeam(req.id, req.body.comment)
+        console.log("req.id : " + req.id)
 
         socketNtfc.ntfcSwitch(req)
 

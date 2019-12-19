@@ -6,7 +6,7 @@ module.exports = {
         Promise.all([
             queryInterface.bulkInsert("status_players", [
                 {
-                    statusId: 1,
+                    userId: 1,
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },

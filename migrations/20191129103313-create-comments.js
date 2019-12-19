@@ -9,7 +9,7 @@ module.exports = {
                     autoIncrement: true,
                     unique: true,
                 },
-                commentId: {
+                userCommentId: {
                     type: DataTypes.INTEGER,
                 },
                 blocked: {

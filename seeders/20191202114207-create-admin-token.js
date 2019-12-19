@@ -6,7 +6,7 @@ module.exports = {
         Promise.all([
             queryInterface.bulkInsert("users_tokens", [
                 {
-                    tokenId: 1,
+                    userId: 1,
                     token: null,
                     refreshToken: null,
                     createdAt: new Date(),

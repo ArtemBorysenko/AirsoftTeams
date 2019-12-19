@@ -32,6 +32,16 @@ describe("Check manager functionality  ", function() {
         await testHelper.deleteUser(800)
     })
 
+    it("manager can approve adding a player to the team", function(done) {
+        chai.request(app)
+            .get("/manager/player/approve_team/700")
+            .set("Authorization", `Bearer ${accessToken}`)
+            .end(async function(err, res) {
+                expect(res).to.have.status(200)
+                done()
+            })
+    })
+
     it("get all players", function(done) {
         chai.request(app)
             .get("/manager/player/")
@@ -65,16 +75,6 @@ describe("Check manager functionality  ", function() {
     it("manager can delete player from team", function(done) {
         chai.request(app)
             .delete("/manager/player/team/700")
-            .set("Authorization", `Bearer ${accessToken}`)
-            .end(async function(err, res) {
-                expect(res).to.have.status(200)
-                done()
-            })
-    })
-
-    it("manager can approve adding a player to the team", function(done) {
-        chai.request(app)
-            .get("/manager/player/approve_team/700")
             .set("Authorization", `Bearer ${accessToken}`)
             .end(async function(err, res) {
                 expect(res).to.have.status(200)

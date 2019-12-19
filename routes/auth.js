@@ -28,7 +28,7 @@ router.post("/registration/", registerValidation, async (req, res, next) => {
                 text: "This is the email sent through Gmail SMTP Server.",
             })
         }
-        res.status(200).json(message)
+        res.status(201).json(message)
     } catch (e) {
         next(e)
     }

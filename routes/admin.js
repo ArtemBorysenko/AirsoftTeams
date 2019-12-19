@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.use((req, res, next) => {
     if (req.role !== "Admin") {
-        throw new ServerError(`${req.role} Доступ запрещен`)
+        throw new ServerError(`${req.role} Доступ запрещен`, 403)
     }
     next()
 })

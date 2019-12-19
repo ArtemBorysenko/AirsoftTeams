@@ -7,8 +7,8 @@ function ntfcReg(req) {
                 .to(config.rooms[0])
                 .emit("Manager_is_reg", " message")
         }
-    } catch (e) {
-        console.log("error ntfcReg" + e)
+    } catch (err) {
+        console.log("error ntfcReg" + err)
     }
 }
 function ntfcApprove(req) {
@@ -17,8 +17,8 @@ function ntfcApprove(req) {
             .to(config.rooms[0])
             .to(config.rooms[2])
             .emit("Player_is_approved", " message")
-    } catch (e) {
-        console.log("error ntfcApprove" + e)
+    } catch (err) {
+        console.log("error ntfcApprove" + err)
     }
 }
 
@@ -28,8 +28,8 @@ function ntfcSwitch(req) {
             .to(config.rooms[0])
             .to(config.rooms[1])
             .emit("Player_switch_team", " message")
-    } catch (e) {
-        console.log("error ntfcSwitch" + e)
+    } catch (err) {
+        console.log("error ntfcSwitch" + err)
     }
 }
 
@@ -39,8 +39,8 @@ function ntfcDeleted(req) {
             .to(config.rooms[0])
             .to(config.rooms[2])
             .emit("Player_is_deleted", " message")
-    } catch (e) {
-        console.log("error ntfcDeleted" + e)
+    } catch (err) {
+        console.log("error ntfcDeleted" + err)
     }
 }
 

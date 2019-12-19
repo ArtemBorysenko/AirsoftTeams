@@ -14,8 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     })
 
     names_teams.associate = function(models) {
-        //  names_teams.hasMany(models.users, {as: "team"}) // FK_userId
-        names_teams.hasMany(models.status_players, {as: "team"}) // FK_userId
+        names_teams.hasMany(models.status_players, {as: "namesTeam"})
+        names_teams.hasMany(models.users, {as: "team"})
     }
 
     return names_teams

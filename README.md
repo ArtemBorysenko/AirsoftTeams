@@ -34,7 +34,7 @@ DB_NAME= <name new database>
 ADMIN_USER=<Имя пользователя по умолчанию>
 ADMIN_PASSWORD=<Пароль пользователя по умолчанию>
 ```
-`npm db-seeders-up`
+`npm run db-seeders-up`
 
 ### Start
 

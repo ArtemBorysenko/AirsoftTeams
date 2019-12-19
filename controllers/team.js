@@ -1,34 +1,22 @@
-const db = require("../models/db")
+const userDB = require("../models/user")
+const teamDB = require("../models/team")
+
 const DatabaseError = require("../errors/database-error")
 
 async function getPlayersByTeam(id) {
-    return db
-        .getAllByTeam(id)
-        .then((user) => {
-            if (!user) {
-                throw new Error("Team not found")
-            }
-            return user
-        })
-        .catch((err) => {
-            throw new DatabaseError(err)
-        })
+    return teamDB.getAllPlayersByTeam(id).catch((err) => {
+        throw new DatabaseError(err)
+    })
 }
 
-async function addPlayerInTeam(userId, teamId) {
-    return db
-        .getById(userId)
+async function addPlayerInTeam(userId, teamName) {
+    return userDB
+        .getUserById(userId)
         .then(async (user) => {
-            if (
-                !user ||
-                user.user_role !== "Player" ||
-                user.team === "A" ||
-                user.team === "B" ||
-                (teamId !== "A" && teamId !== "B")
-            ) {
-                throw new Error("Player not found or invalid team")
+            if (!user || user.user_role !== "Player") {
+                throw new Error("Player not found")
             }
-            await db.changeTeam(user.id, teamId)
+            await teamDB.applyAdditionTeam(user.id, teamName)
             return "Запрос отправлен"
         })
         .catch((err) => {
@@ -36,42 +24,15 @@ async function addPlayerInTeam(userId, teamId) {
         })
 }
 
-async function outPlayerWithTeam(id, comment) {
-    return db
-        .getById(id)
+async function deleteFromTeam(id, comment) {
+    return userDB
+        .getUserById(id)
         .then((user) => {
             if (!user || user.user_role !== "Player") {
-                throw new Error("Team not found")
+                throw new Error("Player not found")
             }
-            db.deleteTeam(user.id, comment)
-            return "Игрок покинул команду"
-        })
-        .catch((err) => {
-            throw new DatabaseError(err)
-        })
-}
-
-async function switchTeam(id, comment) {
-    return db
-        .getById(id)
-        .then((user) => {
-            if (
-                !user
-                // убрать поверки и А и Б user.user_role !== "Player" ||
-                // (user.team !== "B" && user.team !== "A")
-            ) {
-                return new Error("Team not found")
-            }
-            // TODO уерать "A" и "B"  из кода
-            // изменить А на 1 Б на 2
-            // соззадть таблицу для названий команд
-            // убрать даты
-            // отдельная таблица ид тим статус(пендинг, апрус, деклаинд) время выводить все таблицу
-
-            // switch перендават в пост
-            if (user.team === "A") db.changeTeam(user.id, "B", comment)
-            if (user.team === "B") db.changeTeam(user.id, "A", comment)
-            return "Запрос отправлен"
+            teamDB.deleteTeam(user.id, comment)
+            return "Игрок удален из команды"
         })
         .catch((err) => {
             throw new DatabaseError(err)
@@ -81,6 +42,5 @@ async function switchTeam(id, comment) {
 module.exports = {
     getPlayersByTeam,
     addPlayerInTeam,
-    outPlayerWithTeam,
-    switchTeam,
+    deleteFromTeam,
 }

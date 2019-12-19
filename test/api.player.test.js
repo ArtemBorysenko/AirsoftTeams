@@ -63,17 +63,6 @@ describe("Check player functionality  ", function() {
             })
     })
 
-    it("player can switch team", function(done) {
-        chai.request(app)
-            .get("/player/switch/team/")
-            .set("Authorization", `Bearer ${accessToken}`)
-            .end(async function(err, res) {
-                if (err) done(err)
-                expect(res).to.have.status(200)
-                done()
-            })
-    })
-
     it("player can apply for addition in the team", function(done) {
         chai.request(app)
             .get("/player/team/add/A")

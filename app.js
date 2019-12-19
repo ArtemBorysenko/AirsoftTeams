@@ -100,9 +100,9 @@ io.sockets.on("connection", function(socket) {
         if (token) {
             socket.role = token.role
             config.users[id] = {
+                id: token.id,
                 socketId: socket.id,
                 name: token.username,
-                id: token.id,
                 role: token.role,
             }
             switch (token.role) {
@@ -134,6 +134,3 @@ io.sockets.on("connection", function(socket) {
 })
 
 module.exports = app
-// добавить А и Б в миграциию
-// TODO выкинеуть бд  с моделей в auth.js team.js ...
-// todo переписать названия методов подробнее

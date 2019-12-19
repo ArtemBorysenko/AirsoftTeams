@@ -17,7 +17,7 @@ module.exports = {
                 type: "primary key",
                 name: "users_tokens_pk_id",
             }),
-            queryInterface.addConstraint("users_tokens", ["tokenId"], {
+            queryInterface.addConstraint("users_tokens", ["userId"], {
                 type: "foreign key",
                 name: "users_tokens_fk_id",
                 references: {
@@ -31,7 +31,7 @@ module.exports = {
                 type: "primary key",
                 name: "users_pk_id",
             }),
-            queryInterface.addConstraint("users_creds", ["usercredId"], {
+            queryInterface.addConstraint("users_creds", ["userCredId"], {
                 type: "foreign key",
                 name: "users_fk_usercredId",
                 references: {
@@ -41,7 +41,7 @@ module.exports = {
                 onDelete: "cascade",
                 onUpdate: "cascade",
             }),
-            queryInterface.addConstraint("comments", ["commentId"], {
+            queryInterface.addConstraint("comments", ["userCommentId"], {
                 type: "foreign key",
                 name: "users_fk_commentId",
                 references: {

@@ -9,14 +9,14 @@ module.exports = {
                     autoIncrement: true,
                     unique: true,
                 },
-                statusId: {
+                userId: {
                     type: DataTypes.INTEGER,
                 },
                 namesTeamId: {
                     type: DataTypes.INTEGER,
                 },
                 status: {
-                    type: DataTypes.ENUM("pending", "approved", "declined"),
+                    type: DataTypes.ENUM("Pending", "Approved", "Declined"),
                 },
                 createdAt: {
                     type: DataTypes.DATE,

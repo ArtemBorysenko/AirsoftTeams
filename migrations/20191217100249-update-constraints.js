@@ -11,7 +11,7 @@ module.exports = {
                 name: "status_players_pk_id",
             }),
 
-            queryInterface.addConstraint("status_players", ["statusId"], {
+            queryInterface.addConstraint("status_players", ["userId"], {
                 type: "foreign key",
                 name: "users_fk_userId",
                 references: {
@@ -22,7 +22,7 @@ module.exports = {
                 onUpdate: "cascade",
             }),
 
-            queryInterface.addConstraint("users", ["teamId"], {
+            queryInterface.addConstraint("users", ["namesTeamId"], {
                 type: "foreign key",
                 name: "users_fk_teamId",
                 references: {

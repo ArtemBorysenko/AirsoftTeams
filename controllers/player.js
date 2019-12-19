@@ -1,9 +1,11 @@
-const db = require("../models/db")
+const userDB = require("../models/user")
+const teamDB = require("../models/team")
+
 const DatabaseError = require("../errors/database-error")
 
 async function getPlayer(id) {
-    return db
-        .getById(id)
+    return userDB
+        .getUserById(id)
         .then((user) => {
             if (!user || user.user_role !== "Player") {
                 throw new Error("Player not found")
@@ -16,7 +18,7 @@ async function getPlayer(id) {
 }
 
 async function getAllPlayers() {
-    return await db
+    return userDB
         .getAllByUser_role("Player")
         .then((user) => {
             if (!user) {
@@ -30,13 +32,13 @@ async function getAllPlayers() {
 }
 
 async function approvingPlayer(id, comment) {
-    return db
-        .getById(id)
+    return userDB
+        .getUserById(id)
         .then((user) => {
             if (!user || user.user_role !== "Player") {
                 throw new Error("Player not found")
             }
-            db.approving(user.id, comment)
+            userDB.approvingUser(user.id, comment)
             return "Игрок подтвержден"
         })
         .catch((err) => {
@@ -45,13 +47,13 @@ async function approvingPlayer(id, comment) {
 }
 
 async function blockingPlayer(id, comment) {
-    return db
-        .getById(id)
+    return userDB
+        .getUserById(id)
         .then((user) => {
             if (!user || user.user_role !== "Player") {
                 throw new Error("Player not found")
             }
-            db.blocking(user.id, comment)
+            userDB.blockingUser(user.id, comment)
             return "Игрок заблокирован"
         })
         .catch((err) => {
@@ -61,38 +63,22 @@ async function blockingPlayer(id, comment) {
 
 async function deleteUser(id) {
     try {
-        db.deleteUser(id)
+        userDB.deleteUser(id)
         return "пользователь удален"
     } catch (err) {
         throw new DatabaseError(err)
     }
 }
 
-async function deleteFromTeam(id, comment) {
-    return db
-        .getById(id)
+async function managerResponsTeam(id, status) {
+    return userDB
+        .getUserById(id)
         .then((user) => {
-            if (!user || user.user_role !== "Player") {
+            if (!user || user.user_role !== "Player")
                 throw new Error("Player not found")
-            }
-            db.deleteTeam(id, comment)
-            return "Игрок удален из команды"
-        })
-        .catch((err) => {
-            throw new DatabaseError(err)
-        })
-}
-
-async function approvingTeam(id) {
-    return db
-        .getById(id)
-        .then((user) => {
-            if (!user || user.user_role !== "Player") {
-                throw new Error("Player not found")
-            }
-            if (user.team === "want A") db.approvingTeam(id, "A")
-            if (user.team === "want B") db.approvingTeam(id, "B")
-            return "команда изменена"
+            return teamDB.approvingTeam(id, status).then(() => {
+                return `Team ${status}`
+            })
         })
         .catch((err) => {
             throw new DatabaseError(err)
@@ -105,6 +91,5 @@ module.exports = {
     approvingPlayer,
     blockingPlayer,
     deleteUser,
-    deleteFromTeam,
-    approvingTeam,
+    managerResponsTeam,
 }

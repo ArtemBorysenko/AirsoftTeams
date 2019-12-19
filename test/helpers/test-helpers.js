@@ -1,8 +1,7 @@
 const request = require("request")
 const bcrypt = require("bcryptjs")
-const jwt = require("jsonwebtoken")
-const uuid = require("uuid/v4")
-const db = require("../../models/db")
+const authDB = require("../../models/auth")
+const userDB = require("../../models/user")
 
 function getTokens(username, password, callback) {
     request(
@@ -26,17 +25,15 @@ function getTokens(username, password, callback) {
     )
 }
 
-// Создавать и удалять пользователя через контролер или через запрос
 function createTestUser(id, role, password, team) {
-    return db
+    return authDB
         .registration({
             id: `${id}`,
             username: `${role}${id}@test.io`,
             user_role: `${role}`,
-            team: team || "A",
             isActive: true, // isActive = false
             isBlocked: false,
-            usercred: {
+            userCred: {
                 id: `${id}`,
                 password: bcrypt.hashSync(
                     password,
@@ -49,11 +46,16 @@ function createTestUser(id, role, password, team) {
                 token: null,
                 refreshToken: null,
             },
-            comment: {
+            userComment: {
                 id: `${id}`,
                 blocked: null,
                 deleted: null,
                 actived: null,
+            },
+            user: {
+                id: `${id}`,
+                userId: 700,
+                status: "Pending", // "Pending", "Approved", "Declined"
             },
         })
         .then(() => {
@@ -64,6 +66,6 @@ function createTestUser(id, role, password, team) {
 module.exports = {
     getTokens,
     createTestUser,
-    deleteUser: db.deleteUser,
-    deleteUserByName: db.deleteUserByName,
+    deleteUser: userDB.deleteUser,
+    deleteUserByName: userDB.deleteUserByName,
 }

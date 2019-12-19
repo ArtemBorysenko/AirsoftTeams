@@ -9,7 +9,7 @@ module.exports = {
                     autoIncrement: true,
                     unique: true,
                 },
-                tokenId: {
+                userId: {
                     type: DataTypes.INTEGER,
                 },
                 token: {

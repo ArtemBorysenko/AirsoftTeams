@@ -37,11 +37,12 @@ describe("Check auth functionality (registration, login, refreshtoken, logout)",
                 username: "REGISTRATION@test.io",
                 password: "1234",
                 user_role: "Manager",
-                team: "A",
+                isActive: false,
+                isBlocked: false,
             })
             .end(async function(err, res) {
                 setTimeout(() => {
-                    expect(res).to.have.status(200)
+                    expect(res).to.have.status(201)
                     done()
                 }, 0)
             })
