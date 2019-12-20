@@ -60,8 +60,9 @@ app.use(
         let token = req.headers.authorization
         token = token.slice(7, token.length)
         const decoded = jwt.decode(token)
-        if (decoded.isBlocked === true || decoded.isActive === false)
-            res.send("Пользователь заблокирован")
+        if (decoded.isBlocked === true || decoded.isActive === false) {
+            throw new Error("Пользователь заблокирован")
+        }
         req.username = decoded.username
         req.id = decoded.id
         req.role = decoded.role

@@ -725,76 +725,7 @@
 							{
 								"key": "Authorization",
 								"type": "text",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTgsInJvbGUiOiJQbGF5ZXIiLCJpc0Jsb2NrZWQiOmZhbHNlLCJpc0FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNTc0MDc2MjMyLCJleHAiOjE1NzQyMDU4MzJ9.6ExlIz3uSFNM1lbZIHSncZskL9fqEcCpRLlVTJHF9rc"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "username",
-									"value": "Kolya",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "password",
-									"value": "1234",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "user_role",
-									"value": "Player",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "team",
-									"value": "B",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "comment",
-									"value": "Deleet with team",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{url}}/player/team/out/58",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"player",
-								"team",
-								"out",
-								"58"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "switch team",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/x-www-form-urlencoded"
-							},
-							{
-								"key": "Authorization",
-								"type": "text",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6IlBsYXllciIsImlzQmxvY2tlZCI6ZmFsc2UsImlzQWN0aXZlIjp0cnVlLCJpYXQiOjE1NzI2MDI5NzV9.OReSDc8-o5StBIbHPdfclp4eCYfpU6BekuJXHn0uo9Q"
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJLb2x5YUBwbGF5ZXIucnUiLCJyb2xlIjoiUGxheWVyIiwiaXNCbG9ja2VkIjpmYWxzZSwiaXNBY3RpdmUiOnRydWUsImlhdCI6MTU3Njc2MjYxNn0.ru__Hsb6Oerp-9J1_ewlTWcaeuxEnG6VrX7dFhVJPtg"
 							}
 						],
 						"body": {
@@ -833,15 +764,15 @@
 							]
 						},
 						"url": {
-							"raw": "{{url}}/player/team/switch/3",
+							"raw": "{{url}}/player/team/out/",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"player",
 								"team",
-								"switch",
-								"3"
+								"out",
+								""
 							]
 						}
 					},
@@ -989,7 +920,7 @@
 							{
 								"key": "Authorization",
 								"type": "text",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInJvbGUiOiJBZG1pbiIsImlzQmxvY2tlZCI6ZmFsc2UsImlzQWN0aXZlIjp0cnVlLCJpYXQiOjE1NzQwODg1ODF9.fiF_2-OiO440Jp90ae3tOhiOXgWdRHyy3dXQuZc6geQ"
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwidXNlcm5hbWUiOiJBZG1pbjVAYWRtaW4ucnUiLCJyb2xlIjoiTWFuYWdlciIsImlzQmxvY2tlZCI6ZmFsc2UsImlzQWN0aXZlIjp0cnVlLCJpYXQiOjE1NzYwNjIzNDh9.nZhwdoS96f0AHqgCRvsXw6zhwQTR81DiS_5stWtuMIU"
 							}
 						],
 						"body": {
@@ -1027,14 +958,15 @@
 							]
 						},
 						"url": {
-							"raw": "{{url}}/manager/player/59",
+							"raw": "{{url}}/manager/player/team/2",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"manager",
 								"player",
-								"59"
+								"team",
+								"2"
 							]
 						}
 					},
@@ -1088,7 +1020,7 @@
 							]
 						},
 						"url": {
-							"raw": "{{url}}/manager/player/approve_team/44",
+							"raw": "{{url}}/manager/player/approve_team/2",
 							"host": [
 								"{{url}}"
 							],
@@ -1096,7 +1028,7 @@
 								"manager",
 								"player",
 								"approve_team",
-								"44"
+								"2"
 							]
 						}
 					},
@@ -1150,13 +1082,12 @@
 							]
 						},
 						"url": {
-							"raw": "{{url}}/manager/player/team/A",
+							"raw": "{{url}}/manager/team/A",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"manager",
-								"player",
 								"team",
 								"A"
 							]
@@ -1285,17 +1216,14 @@
 						}
 					},
 					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "Registration",
-			"item": [
+				},
 				{
-					"name": "registration(player team B)",
+					"name": "decline add player in team",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -1305,7 +1233,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6IlBsYXllciIsImlhdCI6MTU3MjUxMTg5Mn0.wE46RDL7iJAL9qUx13pgwqTCL9sIwhOINZb7GgCrZVc",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkRhbmlsIiwiaWQiOjIsInJvbGUiOiJNYW5hZ2VyIiwiaXNCbG9ja2VkIjpmYWxzZSwiaXNBY3RpdmUiOnRydWUsImlhdCI6MTU3NDI1ODg4Mn0.hqJLgMN3_wIblGL32a6wVq-XFQjEfvjZmd1ZF-3SETM",
 								"type": "text"
 							}
 						],
@@ -1325,254 +1253,27 @@
 								{
 									"key": "user_role",
 									"value": "Player",
-									"type": "text"
-								},
-								{
-									"key": "team",
-									"value": "B",
-									"type": "text"
-								},
-								{
-									"key": "isActive",
-									"value": "true",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{url}}/registration",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"registration"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "registration(player team A)",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"type": "text"
-							},
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6IlBsYXllciIsImlhdCI6MTU3MjUxMTg5Mn0.wE46RDL7iJAL9qUx13pgwqTCL9sIwhOINZb7GgCrZVc",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "username",
-									"value": "Vasya",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "1234",
-									"type": "text"
-								},
-								{
-									"key": "user_role",
-									"value": "Player",
-									"type": "text"
-								},
-								{
-									"key": "team",
-									"value": "A",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{url}}/registration",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"registration"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "registration(Manager team A)",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"type": "text"
-							},
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6IlBsYXllciIsImlhdCI6MTU3MjUxMTg5Mn0.wE46RDL7iJAL9qUx13pgwqTCL9sIwhOINZb7GgCrZVc",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "username",
-									"value": "Kiril",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "1234",
-									"type": "text"
-								},
-								{
-									"key": "user_role",
-									"value": "Manager",
-									"type": "text"
-								},
-								{
-									"key": "team",
-									"value": "A",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{url}}/registration",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"registration"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "registration Admin",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"type": "text"
-							},
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6IlBsYXllciIsImlhdCI6MTU3MjUxMTg5Mn0.wE46RDL7iJAL9qUx13pgwqTCL9sIwhOINZb7GgCrZVc",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "username",
-									"value": "Admin_POSTMAN",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "1234",
-									"type": "text"
-								},
-								{
-									"key": "user_role",
-									"value": "Admin",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "team",
 									"value": "B",
 									"type": "text",
 									"disabled": true
-								},
-								{
-									"key": "isActive",
-									"value": "true",
-									"type": "text"
-								},
-								{
-									"key": "isBlocked",
-									"value": "false",
-									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{url}}/registration",
+							"raw": "{{url}}/manager/player/decline_team/2",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
-								"registration"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "registration(Manager team B)",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"type": "text"
-							},
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6IlBsYXllciIsImlhdCI6MTU3MjUxMTg5Mn0.wE46RDL7iJAL9qUx13pgwqTCL9sIwhOINZb7GgCrZVc",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "username",
-									"value": "Danil",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "1234",
-									"type": "text"
-								},
-								{
-									"key": "user_role",
-									"value": "Manager",
-									"type": "text"
-								},
-								{
-									"key": "team",
-									"value": "B",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{url}}/registration",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"registration"
+								"manager",
+								"player",
+								"decline_team",
+								"2"
 							]
 						}
 					},
@@ -1582,7 +1283,7 @@
 			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "Log in",
+			"name": "auth / login, logout, refreshtoken",
 			"item": [
 				{
 					"name": "login (player team B)",
@@ -1606,7 +1307,7 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "Kolya",
+									"value": "Kolya@player.ru",
 									"type": "text"
 								},
 								{
@@ -1629,11 +1330,12 @@
 							]
 						},
 						"url": {
-							"raw": "{{url}}/login",
+							"raw": "{{url}}/auth/login",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
+								"auth",
 								"login"
 							]
 						}
@@ -1664,7 +1366,7 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "Admin_POSTMAN",
+									"value": "Admin@airsoftteams.org",
 									"type": "text"
 								},
 								{
@@ -1687,11 +1389,12 @@
 							]
 						},
 						"url": {
-							"raw": "{{url}}/login",
+							"raw": "{{url}}/auth/login",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
+								"auth",
 								"login"
 							]
 						}
@@ -1720,7 +1423,7 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "Kiril",
+									"value": "Kiril@manager.ru",
 									"type": "text"
 								},
 								{
@@ -1743,11 +1446,12 @@
 							]
 						},
 						"url": {
-							"raw": "{{url}}/login",
+							"raw": "{{url}}/auth/login",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
+								"auth",
 								"login"
 							]
 						}
@@ -1776,7 +1480,7 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "Danil",
+									"value": "Danil@manager.ru",
 									"type": "text"
 								},
 								{
@@ -1799,11 +1503,12 @@
 							]
 						},
 						"url": {
-							"raw": "{{url}}/login",
+							"raw": "{{url}}/auth/login",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
+								"auth",
 								"login"
 							]
 						}
@@ -1866,11 +1571,12 @@
 							]
 						},
 						"url": {
-							"raw": "{{url}}/logout",
+							"raw": "{{url}}/auth/logout",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
+								"auth",
 								"logout"
 							]
 						}
@@ -1929,12 +1635,13 @@
 							]
 						},
 						"url": {
-							"raw": "{{url}}/refreshToken",
+							"raw": "{{url}}/auth/refreshtoken",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
-								"refreshToken"
+								"auth",
+								"refreshtoken"
 							]
 						}
 					},
@@ -1962,7 +1669,7 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "Vasya",
+									"value": "Vasya@player.ru",
 									"type": "text"
 								},
 								{
@@ -1985,12 +1692,315 @@
 							]
 						},
 						"url": {
-							"raw": "{{url}}/login",
+							"raw": "{{url}}/auth/login",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
+								"auth",
 								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "auth / Registration",
+			"item": [
+				{
+					"name": "registration(player actived)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6IlBsYXllciIsImlhdCI6MTU3MjUxMTg5Mn0.wE46RDL7iJAL9qUx13pgwqTCL9sIwhOINZb7GgCrZVc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Kolya@player.ru",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "user_role",
+									"value": "Player",
+									"type": "text"
+								},
+								{
+									"key": "team",
+									"value": "B",
+									"type": "text"
+								},
+								{
+									"key": "isActive",
+									"value": "true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/auth/registration",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"registration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registration(player)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6IlBsYXllciIsImlhdCI6MTU3MjUxMTg5Mn0.wE46RDL7iJAL9qUx13pgwqTCL9sIwhOINZb7GgCrZVc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Vasya@player.ru",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "user_role",
+									"value": "Player",
+									"type": "text"
+								},
+								{
+									"key": "team",
+									"value": "A",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/auth/registration",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"registration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registration(manager)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6IlBsYXllciIsImlhdCI6MTU3MjUxMTg5Mn0.wE46RDL7iJAL9qUx13pgwqTCL9sIwhOINZb7GgCrZVc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Kiril@manager.ru",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "user_role",
+									"value": "Manager",
+									"type": "text"
+								},
+								{
+									"key": "team",
+									"value": "A",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/auth/registration",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"registration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registration Admin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6IlBsYXllciIsImlhdCI6MTU3MjUxMTg5Mn0.wE46RDL7iJAL9qUx13pgwqTCL9sIwhOINZb7GgCrZVc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Admin2@admin.ru",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "user_role",
+									"value": "Admin",
+									"type": "text"
+								},
+								{
+									"key": "team",
+									"value": "B",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "isActive",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "isBlocked",
+									"value": "false",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/auth/registration",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"registration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registration (manager actived)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6IlBsYXllciIsImlhdCI6MTU3MjUxMTg5Mn0.wE46RDL7iJAL9qUx13pgwqTCL9sIwhOINZb7GgCrZVc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "Danil@manager.ru",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "text"
+								},
+								{
+									"key": "user_role",
+									"value": "Manager",
+									"type": "text"
+								},
+								{
+									"key": "team",
+									"value": "B",
+									"type": "text"
+								},
+								{
+									"key": "isActive",
+									"value": "true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/auth/registration",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"registration"
 							]
 						}
 					},
