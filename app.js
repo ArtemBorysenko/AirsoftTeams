@@ -9,16 +9,7 @@ const server = http.createServer(app)
 const path = require("path")
 const logger = require("morgan")
 
-// const session = require("express-session")({
-//     secret: "my-secret",
-//     resave: true,
-//     saveUninitialized: true,
-// })
-//
-// const sharedsession = require("express-socket.io-session")
-
-const io = require("socket.io").listen(server)
-
+const io = require("./sockets/index")(server)
 require("./connections/psql-connection.js")
 
 const routerAdmin = require("./routes/admin")
@@ -85,53 +76,6 @@ app.use((err, req, res, next) => {
 
 server.listen(3000, function() {
     console.log("Example app listening on port " + server.address().port)
-})
-
-// io.use(sharedsession(session))
-let count = 0
-
-io.sockets.on("connection", function(socket) {
-    // socket.handshake.session.userdata = socket.id
-    // socket.handshake.session.save()
-
-    const id = count++
-
-    socket.on("adduser", function(AccessToken) {
-        const token = jwt.decode(AccessToken)
-        if (token) {
-            socket.role = token.role
-            config.users[id] = {
-                id: token.id,
-                socketId: socket.id,
-                name: token.username,
-                role: token.role,
-            }
-            switch (token.role) {
-                case "Admin": {
-                    socket.join(config.rooms[0])
-                    break
-                }
-                case "Manager": {
-                    socket.join(config.rooms[1])
-                    break
-                }
-                case "Player": {
-                    socket.join(config.rooms[2])
-                    break
-                }
-            }
-
-            socket.emit("updateName", token)
-
-            socket.emit("updateUsers", config.users)
-            socket.broadcast.emit("updateUsers", config.users)
-        }
-    })
-
-    socket.on("disconnect", () => {
-        delete config.users[id]
-        socket.broadcast.emit("updateUsers", config.users)
-    })
 })
 
 module.exports = app

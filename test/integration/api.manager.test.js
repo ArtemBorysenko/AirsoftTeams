@@ -1,23 +1,24 @@
 const chai = require("chai")
 const expect = chai.expect //should
 const chaiHttp = require("chai-http")
-const app = require("../app")
-const testHelper = require("./helpers/test-helpers")
+const app = require("../../app")
+const testHelper = require("../helpers/test-helpers")
 
 chai.use(chaiHttp)
 
 let accessToken
 let refreshToken
 
-describe("Check player functionality  ", function() {
+describe("Check manager functionality  ", function() {
     this.timeout(5000)
 
     before(async () => {
         await testHelper.createTestUser("700", "Player", "1234")
+        await testHelper.createTestUser("800", "Manager", "1234")
     })
 
     before((done) => {
-        testHelper.getTokens("Player700@test.io", "1234", (err, result) => {
+        testHelper.getTokens("Manager800@test.io", "1234", (err, result) => {
             if (err) done(err)
 
             accessToken = result.accessToken
@@ -28,14 +29,24 @@ describe("Check player functionality  ", function() {
 
     after(async () => {
         await testHelper.deleteUser(700)
+        await testHelper.deleteUser(800)
+    })
+
+    it("manager can approve adding a player to the team", function(done) {
+        chai.request(app)
+            .get("/manager/player/approve_team/700")
+            .set("Authorization", `Bearer ${accessToken}`)
+            .end(async function(err, res) {
+                expect(res).to.have.status(200)
+                done()
+            })
     })
 
     it("get all players", function(done) {
         chai.request(app)
-            .get("/player/player/")
+            .get("/manager/player/")
             .set("Authorization", `Bearer ${accessToken}`)
             .end(async function(err, res) {
-                if (err) done(err)
                 expect(res).to.have.status(200)
                 done()
             })
@@ -43,10 +54,9 @@ describe("Check player functionality  ", function() {
 
     it("get players in team", function(done) {
         chai.request(app)
-            .get("/player/team/A")
+            .get("/manager/team/A")
             .set("Authorization", `Bearer ${accessToken}`)
             .end(async function(err, res) {
-                if (err) done(err)
                 expect(res).to.have.status(200)
                 done()
             })
@@ -54,32 +64,19 @@ describe("Check player functionality  ", function() {
 
     it("get player by id", function(done) {
         chai.request(app)
-            .get("/player/player/700")
+            .get("/manager/player/700")
             .set("Authorization", `Bearer ${accessToken}`)
             .end(async function(err, res) {
-                if (err) done(err)
                 expect(res).to.have.status(200)
                 done()
             })
     })
 
-    it("player can apply for addition in the team", function(done) {
+    it("manager can delete player from team", function(done) {
         chai.request(app)
-            .get("/player/team/add/A")
+            .delete("/manager/player/team/700")
             .set("Authorization", `Bearer ${accessToken}`)
             .end(async function(err, res) {
-                if (err) done(err)
-                expect(res).to.have.status(200)
-                done()
-            })
-    })
-
-    it("player can exit the team", function(done) {
-        chai.request(app)
-            .post("/player/team/out/")
-            .set("Authorization", `Bearer ${accessToken}`)
-            .end(async function(err, res) {
-                if (err) done(err)
                 expect(res).to.have.status(200)
                 done()
             })

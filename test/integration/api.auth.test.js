@@ -1,8 +1,8 @@
 const chai = require("chai")
 const expect = chai.expect //should
 const chaiHttp = require("chai-http")
-const app = require("../app")
-const testHelper = require("./helpers/test-helpers")
+const app = require("../../app")
+const testHelper = require("../helpers/test-helpers")
 
 chai.use(chaiHttp)
 

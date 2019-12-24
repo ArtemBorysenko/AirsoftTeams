@@ -4,17 +4,25 @@ const teamDB = require("../models/team")
 const DatabaseError = require("../errors/database-error")
 
 async function getPlayer(id) {
-    return userDB
-        .getUserById(id)
-        .then((user) => {
-            if (!user || user.user_role !== "Player") {
-                throw new Error("Player not found")
-            }
-            return user
-        })
-        .catch((err) => {
-            throw new DatabaseError(err)
-        })
+    try {
+        const user = await userDB.getUserById(id)
+        if (!user || user.user_role !== "Player")
+            throw new Error("Player not found")
+        return user
+    } catch (err) {
+        throw new DatabaseError(err)
+    }
+    // return userDB
+    //     .getUserById(id)
+    //     .then((user) => {
+    //         if (!user || user.user_role !== "Player") {
+    //             throw new Error("Player not found")
+    //         }
+    //         return user
+    //     })
+    //     .catch((err) => {
+    //         throw new DatabaseError(err)
+    //     })
 }
 
 async function getAllPlayers() {
@@ -27,6 +35,7 @@ async function getAllPlayers() {
             return user
         })
         .catch((err) => {
+            console.log(err)
             throw new DatabaseError(err)
         })
 }
@@ -63,7 +72,7 @@ async function blockingPlayer(id, comment) {
 
 async function deleteUser(id) {
     try {
-        userDB.deleteUser(id)
+        await userDB.deleteUser(id)
         return "пользователь удален"
     } catch (err) {
         throw new DatabaseError(err)

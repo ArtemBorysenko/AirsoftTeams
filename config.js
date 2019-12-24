@@ -2,6 +2,7 @@ const rc = require("rc")
 require("dotenv").config()
 
 module.exports = rc("JWT", {
+    SOCKETS_MODULE: process.env.SOCKETS_MODULE || true,
     env: process.env.NODE_ENV || "development",
     port: process.env.PORT || 3000,
     secret: process.env.JWT_SECRET || "VERYSECRETKEY_2",

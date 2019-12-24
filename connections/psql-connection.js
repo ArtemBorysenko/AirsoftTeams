@@ -41,3 +41,5 @@ for (const modelName of Object.keys(sequelize.models)) {
         sequelize.models[modelName].associate(sequelize.models)
     }
 }
+
+module.exports = sequelize // for unit tests

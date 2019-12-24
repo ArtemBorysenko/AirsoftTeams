@@ -12,8 +12,8 @@ async function registration(newUser) {
                 .create(newUser, {
                     include: [{all: true}],
                 })
-                .then(() => {
-                    return "Пользователь зарегистрировался"
+                .then((user) => {
+                    return user
                 })
         })
         .catch((err) => {
