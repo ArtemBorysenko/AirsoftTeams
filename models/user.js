@@ -42,13 +42,13 @@ async function blockingUser(paramsId, comment) {
 
 async function deleteUser(paramsId) {
     try {
-        return Promise.all([
-            sequelize.models.users.destroy({where: {id: paramsId}}),
-            sequelize.models.users_creds.destroy({where: {id: paramsId}}),
-            sequelize.models.users_tokens.destroy({where: {id: paramsId}}),
-            sequelize.models.comments.destroy({where: {id: paramsId}}),
-            sequelize.models.status_players.destroy({where: {id: paramsId}}),
-        ])
+        //  return Promise.all([
+        return sequelize.models.users.destroy({where: {id: paramsId}})
+        // sequelize.models.users_creds.destroy({where: {id: paramsId}}),
+        // sequelize.models.users_tokens.destroy({where: {id: paramsId}}),
+        // sequelize.models.comments.destroy({where: {id: paramsId}}),
+        // sequelize.models.status_players.destroy({where: {id: paramsId}}),
+        // ])
     } catch (err) {
         throw err
     }
@@ -63,6 +63,9 @@ async function deleteUserByName(params) {
                 sequelize.models.users_creds.destroy({where: {id: user[0].id}})
                 sequelize.models.users_tokens.destroy({where: {id: user[0].id}})
                 sequelize.models.comments.destroy({where: {id: user[0].id}})
+                sequelize.models.status_players.destroy({
+                    where: {id: user[0].id},
+                })
             })
     } catch (err) {
         throw err

@@ -8,7 +8,7 @@ function ntfcReg(req) {
                 .emit("Manager_is_reg", " message")
         }
     } catch (err) {
-        console.log("error ntfcReg" + err)
+        console.log("error ntfcReg " + err)
     }
 }
 function ntfcApprove(req) {
@@ -18,7 +18,7 @@ function ntfcApprove(req) {
             .to(config.rooms[2])
             .emit("Player_is_approved", " message")
     } catch (err) {
-        console.log("error ntfcApprove" + err)
+        console.log("error ntfcApprove " + err)
     }
 }
 
@@ -29,7 +29,7 @@ function ntfcSwitch(req) {
             .to(config.rooms[1])
             .emit("Player_switch_team", " message")
     } catch (err) {
-        console.log("error ntfcSwitch" + err)
+        console.log("error ntfcSwitch " + err)
     }
 }
 

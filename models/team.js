@@ -1,11 +1,11 @@
 const sequelize = require("../connections/database")
 
 async function getAllPlayersByTeam(params) {
-    return sequelize.models.names_teams
+    return sequelize.models.teams_names
         .findOne({where: {name: params}})
         .then((user) => {
             return sequelize.models.users.findAll({
-                where: {namesTeamId: user.id},
+                where: {teamsNameId: user.id},
             })
         })
         .catch((err) => {
@@ -15,12 +15,12 @@ async function getAllPlayersByTeam(params) {
 
 async function deleteTeam(paramsId, comment) {
     sequelize.models.users
-        .update({namesTeamId: null}, {where: {id: paramsId}})
+        .update({teamsNameId: null}, {where: {id: paramsId}})
         .catch((err) => {
             throw err
         })
     sequelize.models.status_players.update(
-        {namesTeamId: null, status: null},
+        {teamsNameId: null, status: null},
         {where: {userId: paramsId}},
     )
     sequelize.models.comments
@@ -47,16 +47,16 @@ async function approvingTeam(paramsId, status) {
 }
 
 async function applyAdditionTeam(paramsId, teamName) {
-    return sequelize.models.names_teams
+    return sequelize.models.teams_names
         .findOne({where: {name: teamName}})
         .then((user) => {
             if (!user) throw new Error("Team with that name not found")
             sequelize.models.status_players.update(
-                {namesTeamId: user.id, status: "Pending"},
+                {teamsNameId: user.id, status: "Pending"},
                 {where: {userId: paramsId}},
             )
             sequelize.models.users.update(
-                {namesTeamId: user.id},
+                {teamsNameId: user.id},
                 {where: {id: paramsId}},
             )
         })

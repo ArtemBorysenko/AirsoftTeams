@@ -12,7 +12,7 @@ module.exports = {
                 userId: {
                     type: DataTypes.INTEGER,
                 },
-                namesTeamId: {
+                teamsNameId: {
                     type: DataTypes.INTEGER,
                 },
                 status: {

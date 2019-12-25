@@ -8,13 +8,13 @@ chai.use(chaiHttp)
 
 let accessToken
 let refreshToken
-
+// TODO дописать тесты ошибок
 describe("Check admin functionality  ", function() {
-    this.timeout(5000)
+    this.timeout(1000)
 
     before(async () => {
-        await testHelper.createTestUser("700", "Player", "1234")
-        await testHelper.createTestUser("800", "Manager", "1234")
+        await testHelper.createTestUser("Player@test.io", "Player", "1234")
+        await testHelper.createTestUser("Manager@test.io", "Manager", "1234")
     })
 
     before((done) => {
@@ -32,7 +32,8 @@ describe("Check admin functionality  ", function() {
     })
 
     after(async () => {
-        await testHelper.deleteUser(800)
+        await testHelper.deleteUserByName("Player@test.io")
+        await testHelper.deleteUserByName("Manager@test.io")
     })
 
     it("get all managers", function(done) {
@@ -48,7 +49,7 @@ describe("Check admin functionality  ", function() {
 
     it("get manager by id", function(done) {
         chai.request(app)
-            .get("/admin/manager/800")
+            .get("/admin/manager/14")
             .set("Authorization", `Bearer ${accessToken}`)
             .end(async function(err, res) {
                 if (err) done(err)
@@ -70,7 +71,7 @@ describe("Check admin functionality  ", function() {
 
     it("get player by id", function(done) {
         chai.request(app)
-            .get("/admin/player/700")
+            .get("/admin/player/15")
             .set("Authorization", `Bearer ${accessToken}`)
             .end(async function(err, res) {
                 if (err) done(err)
@@ -81,7 +82,7 @@ describe("Check admin functionality  ", function() {
 
     it("activonition user", function(done) {
         chai.request(app)
-            .post("/admin/player/approve/700")
+            .post("/admin/player/approve/15")
             .set("Authorization", `Bearer ${accessToken}`)
             .end(async function(err, res) {
                 if (err) done(err)
@@ -92,7 +93,7 @@ describe("Check admin functionality  ", function() {
 
     it("blocking user", function(done) {
         chai.request(app)
-            .post("/admin/player/blocked/700")
+            .post("/admin/player/blocked/15")
             .set("Authorization", `Bearer ${accessToken}`)
             .end(async function(err, res) {
                 if (err) done(err)

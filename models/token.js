@@ -1,12 +1,14 @@
 const sequelize = require("../connections/database")
 
 async function addToken(id, token, refreshToken) {
-    sequelize.models.users_tokens
+    return sequelize.models.users_tokens
         .update({token: token, refreshToken: refreshToken}, {where: {id: id}})
+        .then(() => {
+            return {token, refreshToken}
+        })
         .catch((err) => {
             throw err
         })
-    return {token, refreshToken}
 }
 
 async function newRefreshToken(refreshToken) {

@@ -3,7 +3,7 @@
 module.exports = {
     up: (queryInterface, DataTypes) =>
         Promise.all([
-            queryInterface.createTable("names_teams", {
+            queryInterface.createTable("teams_names", {
                 id: {
                     type: DataTypes.INTEGER,
                     autoIncrement: true,

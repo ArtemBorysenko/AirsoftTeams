@@ -1,9 +1,9 @@
 module.exports = {
     up: (queryInterface, Sequelize) =>
         Promise.all([
-            queryInterface.addConstraint("names_teams", ["id"], {
+            queryInterface.addConstraint("teams_names", ["id"], {
                 type: "primary key",
-                name: "names_teams_pk_id",
+                name: "teams_names_pk_id",
             }),
 
             queryInterface.addConstraint("status_players", ["id"], {
@@ -22,22 +22,22 @@ module.exports = {
                 onUpdate: "cascade",
             }),
 
-            queryInterface.addConstraint("users", ["namesTeamId"], {
+            queryInterface.addConstraint("users", ["teamsNameId"], {
                 type: "foreign key",
                 name: "users_fk_teamId",
                 references: {
-                    table: "names_teams",
+                    table: "teams_names",
                     field: "id",
                 },
                 onDelete: "cascade",
                 onUpdate: "cascade",
             }),
 
-            queryInterface.addConstraint("status_players", ["namesTeamId"], {
+            queryInterface.addConstraint("status_players", ["teamsNameId"], {
                 type: "foreign key",
                 name: "users_fk_teamId",
                 references: {
-                    table: "names_teams",
+                    table: "teams_names",
                     field: "id",
                 },
                 onDelete: "cascade",

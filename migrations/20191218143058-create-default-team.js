@@ -3,7 +3,7 @@
 module.exports = {
     up: (queryInterface, Sequelize) =>
         Promise.all([
-            queryInterface.bulkInsert("names_teams", [
+            queryInterface.bulkInsert("teams_names", [
                 {
                     name: "A",
                     createdAt: new Date(),
@@ -11,7 +11,7 @@ module.exports = {
                 },
             ]),
 
-            queryInterface.bulkInsert("names_teams", [
+            queryInterface.bulkInsert("teams_names", [
                 {
                     name: "B",
                     createdAt: new Date(),

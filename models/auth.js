@@ -22,14 +22,14 @@ async function registration(newUser) {
 }
 
 async function login(username, password) {
-    return sequelize.models.users
+    return await sequelize.models.users
         .findOne({where: {username: username}})
         .then((user) => {
             return sequelize.models.users_creds
                 .findOne({where: {id: user.id}})
                 .then(async (users_creds) => {
                     if (!bcrypt.compareSync(password, users_creds.password)) {
-                        throw new Error("wrong login or password")
+                        throw new Error("wrong login or password.")
                     }
                     return user
                 })

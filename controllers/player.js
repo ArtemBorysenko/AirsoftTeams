@@ -12,6 +12,7 @@ async function getPlayer(id) {
     } catch (err) {
         throw new DatabaseError(err)
     }
+
     // return userDB
     //     .getUserById(id)
     //     .then((user) => {
@@ -48,7 +49,8 @@ async function approvingPlayer(id, comment) {
                 throw new Error("Player not found")
             }
             userDB.approvingUser(user.id, comment)
-            return "Игрок подтвержден"
+            return
+            ;("Игрок подтвержден")
         })
         .catch((err) => {
             throw new DatabaseError(err)
@@ -72,7 +74,8 @@ async function blockingPlayer(id, comment) {
 
 async function deleteUser(id) {
     try {
-        await userDB.deleteUser(id)
+        const testDelete = await userDB.deleteUser(id)
+        console.log("testDelete : ", testDelete)
         return "пользователь удален"
     } catch (err) {
         throw new DatabaseError(err)

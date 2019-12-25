@@ -10,14 +10,14 @@ let accessToken
 let refreshToken
 
 describe("Check player functionality  ", function() {
-    this.timeout(5000)
+    this.timeout(1000)
 
     before(async () => {
-        await testHelper.createTestUser("700", "Player", "1234")
+        await testHelper.createTestUser("Player@test.io", "Player", "1234")
     })
 
     before((done) => {
-        testHelper.getTokens("Player700@test.io", "1234", (err, result) => {
+        testHelper.getTokens("Kolya2@player.ru", "1234", (err, result) => {
             if (err) done(err)
 
             accessToken = result.accessToken
@@ -27,7 +27,7 @@ describe("Check player functionality  ", function() {
     })
 
     after(async () => {
-        await testHelper.deleteUser(700)
+        await testHelper.deleteUserByName("Player@test.io")
     })
 
     it("get all players", function(done) {
@@ -54,7 +54,7 @@ describe("Check player functionality  ", function() {
 
     it("get player by id", function(done) {
         chai.request(app)
-            .get("/player/player/700")
+            .get("/player/player/15")
             .set("Authorization", `Bearer ${accessToken}`)
             .end(async function(err, res) {
                 if (err) done(err)

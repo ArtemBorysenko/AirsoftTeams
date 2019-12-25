@@ -65,6 +65,8 @@ router.post("/manager/blocked/:id", async (req, res, next) => {
 
 router.post("/player/approve/:id", async (req, res, next) => {
     try {
+        // TODO проверку на ошибку
+        // teams_names
         res.status(200).json(
             await player.approvingPlayer(req.params.id, req.body.comment),
         )

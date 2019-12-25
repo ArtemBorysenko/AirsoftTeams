@@ -26,7 +26,7 @@ connection()
 
 const modelNames = [
     "users",
-    "names_teams",
+    "teams_names",
     "users_creds",
     "users_tokens",
     "comments",

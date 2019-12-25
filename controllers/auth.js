@@ -25,14 +25,16 @@ async function logOut(token) {
     })
 }
 
-async function registration(req, res, next) {
+async function registration(req, res, next, id) {
     return await authDB
         .registration({
+            id: id,
             username: req.body.username,
             user_role: req.body.user_role,
             isActive: req.body.isActive || false, // isActive = false
             isBlocked: false,
             userCred: {
+                id: id,
                 password: bcrypt.hashSync(
                     req.body.password,
                     bcrypt.genSaltSync(10),
@@ -40,10 +42,12 @@ async function registration(req, res, next) {
                 ),
             },
             token: {
+                id: id,
                 token: null,
                 refreshToken: null,
             },
             userComment: {
+                id: id,
                 blocked: null,
                 deleted: null,
                 actived: null,

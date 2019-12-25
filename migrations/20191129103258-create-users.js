@@ -16,7 +16,7 @@ module.exports = {
                 user_role: {
                     type: DataTypes.ENUM("Player", "Manager", "Admin"),
                 },
-                namesTeamId: {
+                teamsNameId: {
                     type: DataTypes.INTEGER,
                 },
                 isActive: {

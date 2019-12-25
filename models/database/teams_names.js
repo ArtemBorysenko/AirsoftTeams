@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const names_teams = sequelize.define("names_teams", {
+    const teams_names = sequelize.define("teams_names", {
         name: {
             type: DataTypes.STRING,
         },
@@ -13,10 +13,13 @@ module.exports = (sequelize, DataTypes) => {
         },
     })
 
-    names_teams.associate = function(models) {
-        names_teams.hasMany(models.status_players, {as: "namesTeam"})
-        names_teams.hasMany(models.users, {as: "team"})
+    teams_names.associate = function(models) {
+        teams_names.hasMany(models.status_players, {
+            as: "namesTeam",
+            onDelete: "cascade",
+        })
+        teams_names.hasMany(models.users, {as: "team", onDelete: "cascade"})
     }
 
-    return names_teams
+    return teams_names
 }

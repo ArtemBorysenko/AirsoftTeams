@@ -16,10 +16,10 @@ module.exports = (sequelize, DataTypes) => {
     })
 
     users.associate = function(models) {
-        users.hasOne(models.users_creds, {as: "userCred"})
-        users.hasMany(models.users_tokens, {as: "token"})
-        users.hasOne(models.comments, {as: "userComment"})
-        users.hasOne(models.status_players, {as: "user"})
+        users.hasOne(models.users_creds, {as: "userCred", onDelete: "cascade"})
+        users.hasMany(models.users_tokens, {as: "token", onDelete: "cascade"})
+        users.hasOne(models.comments, {as: "userComment", onDelete: "cascade"})
+        users.hasOne(models.status_players, {as: "user", onDelete: "cascade"})
     }
     return users
 }
