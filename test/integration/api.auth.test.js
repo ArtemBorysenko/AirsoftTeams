@@ -26,8 +26,29 @@ describe("Check auth functionality (registration, login, refreshtoken, logout)",
         )
     })
 
-    after(async () => {
-        await testHelper.deleteUserByName("REGISTRATION@test.io")
+    after((done) => {
+        testHelper.getTokens(
+            "Admin@airsoftteams.org",
+            "1234",
+            (err, result) => {
+                if (err) done(err)
+
+                accessToken = result.accessToken
+                refreshToken = result.refreshToken
+                done()
+            },
+        )
+    })
+
+    after((done) => {
+        testHelper.deleteUser(
+            (err, result) => {
+                if (err) done(err)
+                done()
+            },
+            accessToken,
+            "REGISTRATION@test.io",
+        )
     })
 
     it("User can registration", function(done) {

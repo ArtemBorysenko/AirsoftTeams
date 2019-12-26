@@ -1,8 +1,8 @@
 class DatabaseError extends Error {
-    constructor(errors) {
+    constructor(errors, status) {
         const message = "PostgreSQL error"
         super(message)
-        this.status = 500
+        this.status = status || 500
         this.message = message
         this.errors = [
             {

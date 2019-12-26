@@ -10,15 +10,38 @@ let accessToken
 let refreshToken
 
 describe("Check manager functionality  ", function() {
-    this.timeout(1000)
+    this.timeout(2000)
 
-    before(async () => {
-        await testHelper.createTestUser("Player@test.io", "Player", "1234", 700)
-        await testHelper.createTestUser("Manager@test.io", "Manager", "1234")
+    before((done) => {
+        testHelper.createTestUser(
+            (err, result) => {
+                if (err) done(err)
+                done()
+            },
+            "Player@test.io",
+            "Player",
+            "1234",
+            700,
+            true,
+        )
     })
 
     before((done) => {
-        testHelper.getTokens("Danil@manager.ru", "1234", (err, result) => {
+        testHelper.createTestUser(
+            (err, result) => {
+                if (err) done(err)
+                done()
+            },
+            "Manager@test.io",
+            "Manager",
+            "1234",
+            800,
+            true,
+        )
+    })
+
+    before((done) => {
+        testHelper.getTokens("Manager@test.io", "1234", (err, result) => {
             if (err) done(err)
 
             accessToken = result.accessToken
@@ -28,32 +51,57 @@ describe("Check manager functionality  ", function() {
     })
 
     before((done) => {
-        testHelper.getTokens("Player@test.io", "1234", (err, result) => {
+        testHelper.getTokens("Player@test.io", "1234", async (err, result) => {
             if (err) done(err)
 
-            playerAccessToken = result.accessToken
-            playerRefreshToken = result.refreshToken
-            done()
+            testHelper.playerAddTeam((err, result) => {
+                if (err) done(err)
+                done()
+            }, result.accessToken)
         })
     })
 
-    after(async () => {
-        await testHelper.deleteUserByName("Player@test.io")
-        await testHelper.deleteUserByName("Manager@test.io")
+    after((done) => {
+        testHelper.getTokens(
+            "Admin@airsoftteams.org",
+            "1234",
+            (err, result) => {
+                if (err) done(err)
+
+                accessToken = result.accessToken
+                refreshToken = result.refreshToken
+                done()
+            },
+        )
+    })
+
+    after((done) => {
+        testHelper.deleteUser(
+            (err, result) => {
+                if (err) done(err)
+                done()
+            },
+            accessToken,
+            "Player@test.io",
+        )
+    })
+
+    after((done) => {
+        testHelper.deleteUser(
+            (err, result) => {
+                if (err) done(err)
+                done()
+            },
+            accessToken,
+            "Manager@test.io",
+        )
     })
 
     it("manager can approve adding a player to the team", function(done) {
         chai.request(app)
-            .get("/player/team/add/A")
-            .set("Authorization", `Bearer ${playerAccessToken}`)
-            .end(async function(err, res) {
-                expect(res).to.have.status(200)
-                done()
-            })
-        chai.request(app)
             .get("/manager/player/approve_team/700")
             .set("Authorization", `Bearer ${accessToken}`)
-            .end(async function(err, res) {
+            .end(function(err, res) {
                 expect(res).to.have.status(200)
                 done()
             })
@@ -63,7 +111,7 @@ describe("Check manager functionality  ", function() {
         chai.request(app)
             .get("/manager/player/")
             .set("Authorization", `Bearer ${accessToken}`)
-            .end(async function(err, res) {
+            .end(function(err, res) {
                 expect(res).to.have.status(200)
                 done()
             })
@@ -73,7 +121,7 @@ describe("Check manager functionality  ", function() {
         chai.request(app)
             .get("/manager/team/A")
             .set("Authorization", `Bearer ${accessToken}`)
-            .end(async function(err, res) {
+            .end(function(err, res) {
                 expect(res).to.have.status(200)
                 done()
             })
@@ -81,9 +129,9 @@ describe("Check manager functionality  ", function() {
 
     it("get player by id", function(done) {
         chai.request(app)
-            .get("/manager/player/15")
+            .get("/manager/player/700")
             .set("Authorization", `Bearer ${accessToken}`)
-            .end(async function(err, res) {
+            .end(function(err, res) {
                 expect(res).to.have.status(200)
                 done()
             })
@@ -91,9 +139,9 @@ describe("Check manager functionality  ", function() {
 
     it("manager can delete player from team", function(done) {
         chai.request(app)
-            .delete("/manager/player/team/15")
+            .delete("/manager/player/team/700")
             .set("Authorization", `Bearer ${accessToken}`)
-            .end(async function(err, res) {
+            .end(function(err, res) {
                 expect(res).to.have.status(200)
                 done()
             })

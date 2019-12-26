@@ -1,68 +1,75 @@
 const sequelize = require("../connections/database")
 
 async function getAllPlayersByTeam(params) {
-    return sequelize.models.teams_names
-        .findOne({where: {name: params}})
-        .then((user) => {
-            return sequelize.models.users.findAll({
-                where: {teamsNameId: user.id},
-            })
+    try {
+        const user = await sequelize.models.teams_names.findOne({
+            where: {name: params},
         })
-        .catch((err) => {
-            throw err
+        return await sequelize.models.users.findAll({
+            where: {teamsNameId: user.id},
         })
+    } catch (err) {
+        throw err
+    }
 }
 
 async function deleteTeam(paramsId, comment) {
-    sequelize.models.users
-        .update({teamsNameId: null}, {where: {id: paramsId}})
-        .catch((err) => {
-            throw err
-        })
-    sequelize.models.status_players.update(
-        {teamsNameId: null, status: null},
-        {where: {userId: paramsId}},
-    )
-    sequelize.models.comments
-        .update({deleted: comment}, {where: {id: paramsId}})
-        .catch((err) => {
-            throw err
-        })
+    try {
+        //TODO return array [1, 0, 0]
+        return Promise.all([
+            await sequelize.models.users.update(
+                {teamsNameId: null},
+                {where: {id: paramsId}},
+            ),
+            await sequelize.models.status_players.update(
+                {teamsNameId: null, status: null},
+                {where: {userId: paramsId}},
+            ),
+            await sequelize.models.comments.update(
+                {deleted: comment},
+                {where: {id: paramsId}},
+            ),
+        ])
+    } catch (err) {
+        throw err
+    }
 }
 
 async function approvingTeam(paramsId, status) {
-    return sequelize.models.status_players
-        .findOne({where: {userId: paramsId}})
-        .then((user) => {
-            if (!user || user.status !== "Pending")
-                throw new Error("Player not pending")
-            sequelize.models.status_players.update(
-                {status: status},
-                {where: {userId: paramsId}},
-            )
+    try {
+        const user = await sequelize.models.status_players.findOne({
+            where: {userId: paramsId},
         })
-        .catch((err) => {
-            throw err
-        })
+        if (!user || user.status !== "Pending")
+            throw new Error("Player not pending")
+        await sequelize.models.status_players.update(
+            {status: status},
+            {where: {userId: paramsId}},
+        )
+        return user
+    } catch (err) {
+        throw err
+    }
 }
 
 async function applyAdditionTeam(paramsId, teamName) {
-    return sequelize.models.teams_names
-        .findOne({where: {name: teamName}})
-        .then((user) => {
-            if (!user) throw new Error("Team with that name not found")
-            sequelize.models.status_players.update(
-                {teamsNameId: user.id, status: "Pending"},
-                {where: {userId: paramsId}},
-            )
-            sequelize.models.users.update(
-                {teamsNameId: user.id},
-                {where: {id: paramsId}},
-            )
+    try {
+        const user = await sequelize.models.teams_names.findOne({
+            where: {name: teamName},
         })
-        .catch((err) => {
-            throw err
-        })
+        if (!user) throw new Error("Team with that name not found")
+        await sequelize.models.status_players.update(
+            {teamsNameId: user.id, status: "Pending"},
+            {where: {userId: paramsId}},
+        )
+        await sequelize.models.users.update(
+            {teamsNameId: user.id},
+            {where: {id: paramsId}},
+        )
+        return user
+    } catch (err) {
+        throw err
+    }
 }
 
 module.exports = {

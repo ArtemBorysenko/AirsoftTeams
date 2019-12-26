@@ -1,8 +1,4 @@
 const request = require("request")
-const bcrypt = require("bcryptjs")
-//TODO created/delete user убеать модоели
-const authDB = require("../../models/auth")
-const userDB = require("../../models/user")
 
 function getTokens(username, password, callback) {
     request(
@@ -26,65 +22,76 @@ function getTokens(username, password, callback) {
     )
 }
 
-function createTestUser(username, role, password, id, team) {
-    request({
-        method: "POST",
-        uri: "http://localhost:3000/auth/registration",
-        options: {
-            contentType: "application/x-www-form-urlencoded",
+function createTestUser(
+    callback,
+    username,
+    role,
+    password,
+    id,
+    isActive,
+    team,
+) {
+    request(
+        {
+            method: "POST",
+            uri: "http://localhost:3000/auth/registration",
+            options: {
+                contentType: "application/x-www-form-urlencoded",
+            },
+            form: {
+                id: id,
+                username: username,
+                password: password,
+                user_role: role,
+                team: team,
+                isActive: isActive,
+            },
         },
-        form: {
-            id: id,
-            username: username,
-            password: password,
-            user_role: role,
-            team: team,
-            isActive: true,
+        (err) => {
+            callback(err)
         },
-    })
+    )
 }
 
-// function createTestUser(id, role, password, team) {
-//     return authDB
-//         .registration({
-//             id: `${id}`,
-//             username: `${role}${id}@test.io`,
-//             user_role: `${role}`,
-//             isActive: true, // isActive = false
-//             isBlocked: false,
-//             userCred: {
-//                 id: `${id}`,
-//                 password: bcrypt.hashSync(
-//                     password,
-//                     bcrypt.genSaltSync(10),
-//                     null,
-//                 ),
-//             },
-//             tokens: {
-//                 id: `${id}`,
-//                 token: null,
-//                 refreshToken: null,
-//             },
-//             userComment: {
-//                 id: `${id}`,
-//                 blocked: null,
-//                 deleted: null,
-//                 actived: null,
-//             },
-//             user: {
-//                 id: `${id}`,
-//                 userId: 700,
-//                 status: "Pending", // "Pending", "Approved", "Declined"
-//             },
-//         })
-//         .then(() => {
-//             return Promise.resolve()
-//         })
-// }
+function playerAddTeam(callback, accessToken) {
+    request(
+        {
+            method: "GET",
+            uri: "http://localhost:3000/player/team/add/A",
+            options: {
+                contentType: "application/x-www-form-urlencoded",
+            },
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        },
+        (err) => {
+            callback(err)
+        },
+    )
+}
+
+function deleteUser(callback, accessToken, params) {
+    request(
+        {
+            method: "DELETE",
+            uri: `http://localhost:3000/admin/delete/${params}`,
+            options: {
+                contentType: "application/x-www-form-urlencoded",
+            },
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        },
+        (err) => {
+            callback(err)
+        },
+    )
+}
 
 module.exports = {
     getTokens,
     createTestUser,
-    deleteUser: userDB.deleteUser,
-    deleteUserByName: userDB.deleteUserByName,
+    playerAddTeam,
+    deleteUser,
 }

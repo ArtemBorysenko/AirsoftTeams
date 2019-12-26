@@ -20,21 +20,23 @@ async function logIn(username, password) {
 }
 
 async function logOut(token) {
-    return await tokenDB.removeToken(token).catch((err) => {
+    try {
+        return await tokenDB.removeToken(token)
+    } catch (err) {
         throw new DatabaseError(err)
-    })
+    }
 }
 
 async function registration(req, res, next, id) {
-    return await authDB
-        .registration({
-            id: id,
+    try {
+        return await authDB.registration({
+            id: req.body.id,
             username: req.body.username,
             user_role: req.body.user_role,
             isActive: req.body.isActive || false, // isActive = false
             isBlocked: false,
             userCred: {
-                id: id,
+                id: req.body.id,
                 password: bcrypt.hashSync(
                     req.body.password,
                     bcrypt.genSaltSync(10),
@@ -42,21 +44,21 @@ async function registration(req, res, next, id) {
                 ),
             },
             token: {
-                id: id,
+                id: req.body.id,
                 token: null,
                 refreshToken: null,
             },
             userComment: {
-                id: id,
+                id: req.body.id,
                 blocked: null,
                 deleted: null,
                 actived: null,
             },
             user: {},
         })
-        .catch((err) => {
-            throw new ServerError(err.message, 422, "Registration error")
-        })
+    } catch (err) {
+        throw new ServerError(err.message, 422, "Registration error")
+    }
 }
 
 async function refreshToken(userRefreshToken) {

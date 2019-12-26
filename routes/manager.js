@@ -14,7 +14,7 @@ router.use((req, res, next) => {
     next()
 })
 
-router.get("/player/", async (req, res, next) => {
+router.get("/player", async (req, res, next) => {
     try {
         res.status(200).json(await player.getAllPlayers())
     } catch (e) {

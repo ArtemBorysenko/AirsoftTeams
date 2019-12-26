@@ -1,72 +1,76 @@
 const sequelize = require("../connections/database")
 
 async function getAllByUser_role(params) {
-    return sequelize.models.users
-        .findAll({where: {user_role: params}})
-        .catch((err) => {
-            throw err
+    try {
+        return await sequelize.models.users.findAll({
+            where: {user_role: params},
         })
+    } catch (err) {
+        throw err
+    }
+    // return sequelize.models.users
+    //     .findAll({where: {user_role: params}})
+    //     .catch((err) => {
+    //         throw err
+    //     })
 }
 
 async function getUserById(paramsId) {
-    return sequelize.models.users.findByPk(paramsId).catch((err) => {
+    try {
+        return await sequelize.models.users.findByPk(paramsId)
+    } catch (err) {
         throw err
-    })
+    }
+    // return sequelize.models.users.findByPk(paramsId)
+    //     .catch((err) => {
+    //     throw err
+    // })
 }
 
 async function approvingUser(paramsId, comment) {
-    sequelize.models.users
-        .update({isActive: true}, {where: {id: paramsId}})
-        .catch((err) => {
-            throw err
-        })
-    sequelize.models.comments
-        .update({actived: comment}, {where: {id: paramsId}})
-        .catch((err) => {
-            throw err
-        })
-}
-
-async function blockingUser(paramsId, comment) {
-    sequelize.models.users
-        .update({isBlocked: true}, {where: {id: paramsId}})
-        .catch((err) => {
-            throw err
-        })
-    sequelize.models.comments
-        .update({blocked: comment}, {where: {id: paramsId}})
-        .catch((err) => {
-            throw err
-        })
-}
-
-async function deleteUser(paramsId) {
     try {
-        //  return Promise.all([
-        return sequelize.models.users.destroy({where: {id: paramsId}})
-        // sequelize.models.users_creds.destroy({where: {id: paramsId}}),
-        // sequelize.models.users_tokens.destroy({where: {id: paramsId}}),
-        // sequelize.models.comments.destroy({where: {id: paramsId}}),
-        // sequelize.models.status_players.destroy({where: {id: paramsId}}),
-        // ])
+        // TODO return array [1, 0, 1, 1, 0]
+        return Promise.all([
+            await sequelize.models.users.update(
+                {isActive: true},
+                {where: {id: paramsId}},
+            ),
+            await sequelize.models.comments.update(
+                {actived: comment},
+                {where: {id: paramsId}},
+            ),
+        ])
     } catch (err) {
         throw err
     }
 }
 
-async function deleteUserByName(params) {
+async function blockingUser(paramsId, comment) {
     try {
-        sequelize.models.users
-            .findAll({where: {username: params}})
-            .then((user) => {
-                sequelize.models.users.destroy({where: {id: user[0].id}})
-                sequelize.models.users_creds.destroy({where: {id: user[0].id}})
-                sequelize.models.users_tokens.destroy({where: {id: user[0].id}})
-                sequelize.models.comments.destroy({where: {id: user[0].id}})
-                sequelize.models.status_players.destroy({
-                    where: {id: user[0].id},
-                })
-            })
+        // TODO return array [1, 0, 1, 1, 0]
+        return Promise.all([
+            sequelize.models.users.update(
+                {isBlocked: true},
+                {where: {id: paramsId}},
+            ),
+            sequelize.models.comments.update(
+                {blocked: comment},
+                {where: {id: paramsId}},
+            ),
+        ])
+    } catch (err) {
+        throw err
+    }
+}
+
+async function deleteUser(params) {
+    try {
+        const user = await sequelize.models.users.findOne({
+            where: {username: params},
+        })
+        if (!user)
+            return await sequelize.models.users.destroy({where: {id: params}})
+        return await sequelize.models.users.destroy({where: {id: user.id}})
     } catch (err) {
         throw err
     }
@@ -78,5 +82,4 @@ module.exports = {
     approvingUser,
     blockingUser,
     deleteUser,
-    deleteUserByName,
 }

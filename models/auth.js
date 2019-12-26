@@ -2,41 +2,36 @@ const sequelize = require("../connections/database")
 const bcrypt = require("bcryptjs")
 
 async function registration(newUser) {
-    return await sequelize.models.users
-        .findOne({where: {username: newUser.username}})
-        .then((user) => {
-            if (user) {
-                throw new Error("User with this email already exist.")
-            }
-            return sequelize.models.users
-                .create(newUser, {
-                    include: [{all: true}],
-                })
-                .then((user) => {
-                    return user
-                })
+    try {
+        const user = await sequelize.models.users.findOne({
+            where: {username: newUser.username},
         })
-        .catch((err) => {
-            throw err
+        if (user) {
+            throw new Error("User with this email already exist.")
+        }
+        return await sequelize.models.users.create(newUser, {
+            include: [{all: true}],
         })
+    } catch (err) {
+        throw err
+    }
 }
 
 async function login(username, password) {
-    return await sequelize.models.users
-        .findOne({where: {username: username}})
-        .then((user) => {
-            return sequelize.models.users_creds
-                .findOne({where: {id: user.id}})
-                .then(async (users_creds) => {
-                    if (!bcrypt.compareSync(password, users_creds.password)) {
-                        throw new Error("wrong login or password.")
-                    }
-                    return user
-                })
+    try {
+        const user = await sequelize.models.users.findOne({
+            where: {username: username},
         })
-        .catch((err) => {
-            throw err
+        const usersCreds = await sequelize.models.users_creds.findOne({
+            where: {id: user.id},
         })
+        if (!bcrypt.compareSync(password, usersCreds.password)) {
+            throw new Error("wrong login or password.")
+        }
+        return user
+    } catch (err) {
+        throw err
+    }
 }
 
 module.exports = {
