@@ -15,17 +15,16 @@ async function getAllPlayersByTeam(params) {
 
 async function deleteTeam(paramsId, comment) {
     try {
-        //TODO return array [1, 0, 0]
         return Promise.all([
-            await sequelize.models.users.update(
+            sequelize.models.users.update(
                 {teamsNameId: null},
                 {where: {id: paramsId}},
             ),
-            await sequelize.models.status_players.update(
+            sequelize.models.status_players.update(
                 {teamsNameId: null, status: null},
                 {where: {userId: paramsId}},
             ),
-            await sequelize.models.comments.update(
+            sequelize.models.comments.update(
                 {deleted: comment},
                 {where: {id: paramsId}},
             ),

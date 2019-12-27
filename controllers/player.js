@@ -6,7 +6,7 @@ const DatabaseError = require("../errors/database-error")
 async function getPlayer(id) {
     try {
         const user = await userDB.getUserById(id)
-        if (!user || user.user_role !== "Player")
+        if (!user || user.user_role !== "Player" || user === 0)
             throw new Error("Player not found")
         return user
     } catch (err) {
@@ -17,7 +17,7 @@ async function getPlayer(id) {
 async function getAllPlayers() {
     try {
         const user = await userDB.getAllByUser_role("Player")
-        if (!user) throw new Error("Players not found")
+        if (!user || user === 0) throw new Error("Players not found")
         return user
     } catch (err) {
         throw new DatabaseError(err, 501)
@@ -25,13 +25,14 @@ async function getAllPlayers() {
 }
 
 async function approvingPlayer(id, comment) {
-    // TODO проверку на ошибку
     try {
         const user = await userDB.getUserById(id)
-        if (!user || user.user_role !== "Player")
+        if (!user || user.user_role !== "Player" || user === 0)
             throw new Error("Player not found")
         const approvingUser = await userDB.approvingUser(user.id, comment)
-        if (approvingUser === 0) throw new Error("Player not found") //TODO sequelize === 0 error
+        approvingUser.forEach((element) => {
+            if (element === 0) throw new Error("Player not found")
+        })
         return "Игрок подтвержден"
     } catch (err) {
         throw new DatabaseError(err)
@@ -41,12 +42,13 @@ async function approvingPlayer(id, comment) {
 async function blockingPlayer(id, comment) {
     try {
         const user = await userDB.getUserById(id)
-        if (!user || user.user_role !== "Player")
+        if (!user || user.user_role !== "Player" || user === 0)
             throw new Error("Player not found")
         const blockingUser = await userDB.blockingUser(user.id, comment)
-        if (blockingUser)
-            //TODO sequelize === 0 error
-            return "Игрок заблокирован"
+        blockingUser.forEach((element) => {
+            if (element === 0) throw new Error("Player not found")
+        })
+        return "Игрок заблокирован"
     } catch (err) {
         throw new DatabaseError(err)
     }
@@ -64,12 +66,11 @@ async function deleteUser(id) {
 async function managerResponsTeam(id, status) {
     try {
         const user = await userDB.getUserById(id)
-        if (!user || user.user_role !== "Player")
+        if (!user || user.user_role !== "Player" || user === 0)
             throw new Error("Player not found")
         const approvingTeam = await teamDB.approvingTeam(id, status)
-        if (approvingTeam)
-            //TODO sequelize === 0 error
-            return `Team ${status}`
+        if (approvingTeam === 0) throw new Error("Player not found")
+        return `Team ${status}`
     } catch (err) {
         throw new DatabaseError(err)
     }

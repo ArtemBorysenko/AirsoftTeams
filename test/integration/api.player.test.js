@@ -27,7 +27,7 @@ describe("Check player functionality  ", function() {
     })
 
     before((done) => {
-        testHelper.getTokens("Kolya2@player.ru", "1234", (err, result) => {
+        testHelper.getTokens("Player@test.io", "1234", (err, result) => {
             if (err) done(err)
 
             accessToken = result.accessToken

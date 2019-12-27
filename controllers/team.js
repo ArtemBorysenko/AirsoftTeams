@@ -5,8 +5,8 @@ const DatabaseError = require("../errors/database-error")
 
 async function getPlayersByTeam(id) {
     try {
-        //TODO if(getAllPlayersByTeam === 0 ) error
-        return teamDB.getAllPlayersByTeam(id)
+        const getAllPlayersByTeam = await teamDB.getAllPlayersByTeam(id)
+        if (getAllPlayersByTeam === 0) Error("Player not found")
     } catch (err) {
         throw new DatabaseError(err)
     }
@@ -15,13 +15,13 @@ async function getPlayersByTeam(id) {
 async function addPlayerInTeam(userId, teamName) {
     try {
         const user = await userDB.getUserById(userId)
-        if (!user || user.user_role !== "Player")
+        if (!user || user.user_role !== "Player" || user === 0)
             throw new Error("Player not found")
         const applyAdditionTeam = await teamDB.applyAdditionTeam(
             user.id,
             teamName,
         )
-        //TODO if(applyAdditionTeam === 0)
+        if (applyAdditionTeam === 0) throw new Error("Player not found")
         return "Запрос отправлен"
     } catch (err) {
         throw new DatabaseError(err)
@@ -31,10 +31,12 @@ async function addPlayerInTeam(userId, teamName) {
 async function deleteFromTeam(id, comment) {
     try {
         const user = await userDB.getUserById(id)
-        if (!user || user.user_role !== "Player")
+        if (!user || user.user_role !== "Player" || user === 0)
             throw new Error("Player not found")
         const deleteTeam = await teamDB.deleteTeam(user.id, comment)
-        if (deleteTeam === 0) throw new Error("Player not found") //TODO
+        deleteTeam.forEach((element) => {
+            if (element === 0) throw new Error("Player not found")
+        })
         return "Игрок удален из команды"
     } catch (err) {
         throw new DatabaseError(err)

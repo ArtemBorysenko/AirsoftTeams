@@ -8,11 +8,6 @@ async function getAllByUser_role(params) {
     } catch (err) {
         throw err
     }
-    // return sequelize.models.users
-    //     .findAll({where: {user_role: params}})
-    //     .catch((err) => {
-    //         throw err
-    //     })
 }
 
 async function getUserById(paramsId) {
@@ -21,21 +16,16 @@ async function getUserById(paramsId) {
     } catch (err) {
         throw err
     }
-    // return sequelize.models.users.findByPk(paramsId)
-    //     .catch((err) => {
-    //     throw err
-    // })
 }
 
 async function approvingUser(paramsId, comment) {
     try {
-        // TODO return array [1, 0, 1, 1, 0]
         return Promise.all([
-            await sequelize.models.users.update(
+            sequelize.models.users.update(
                 {isActive: true},
                 {where: {id: paramsId}},
             ),
-            await sequelize.models.comments.update(
+            sequelize.models.comments.update(
                 {actived: comment},
                 {where: {id: paramsId}},
             ),
@@ -47,7 +37,6 @@ async function approvingUser(paramsId, comment) {
 
 async function blockingUser(paramsId, comment) {
     try {
-        // TODO return array [1, 0, 1, 1, 0]
         return Promise.all([
             sequelize.models.users.update(
                 {isBlocked: true},

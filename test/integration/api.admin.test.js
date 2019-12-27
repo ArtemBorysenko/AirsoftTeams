@@ -8,7 +8,7 @@ chai.use(chaiHttp)
 
 let accessToken
 let refreshToken
-// TODO дописать тесты ошибок
+
 describe("Check admin functionality  ", function() {
     this.timeout(1000)
 
@@ -51,17 +51,6 @@ describe("Check admin functionality  ", function() {
                 refreshToken = result.refreshToken
                 done()
             },
-        )
-    })
-
-    after((done) => {
-        testHelper.deleteUser(
-            (err, result) => {
-                if (err) done(err)
-                done()
-            },
-            accessToken,
-            "Manager@test.io",
         )
     })
 
@@ -134,6 +123,17 @@ describe("Check admin functionality  ", function() {
     it("delete user by id", function(done) {
         chai.request(app)
             .delete("/admin/delete/700")
+            .set("Authorization", `Bearer ${accessToken}`)
+            .end(async function(err, res) {
+                if (err) done(err)
+                expect(res).to.have.status(200)
+                done()
+            })
+    })
+
+    it("delete user by username", function(done) {
+        chai.request(app)
+            .delete("/admin/delete/Manager@test.io")
             .set("Authorization", `Bearer ${accessToken}`)
             .end(async function(err, res) {
                 if (err) done(err)

@@ -10,9 +10,7 @@ const DatabaseError = require("../errors/database-error")
 async function logIn(username, password) {
     try {
         const user = await authDB.login(username, password)
-
         const {token, refreshToken} = await createToken(user)
-
         return await tokenDB.addToken(user.id, token, refreshToken)
     } catch (err) {
         throw new ServerError(err.message, 422, "Login error")
