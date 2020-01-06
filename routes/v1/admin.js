@@ -1,7 +1,7 @@
 const express = require("express")
-const manager = require("../controllers/manager")
-const player = require("../controllers/player")
-const ServerError = require("../errors/server-error")
+const manager = require("../../controllers/manager")
+const player = require("../../controllers/player")
+const ServerError = require("../../errors/server-error")
 const router = express.Router()
 
 router.use((req, res, next) => {

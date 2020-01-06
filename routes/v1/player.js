@@ -1,10 +1,10 @@
 const express = require("express")
-const team = require("../controllers/team")
-const player = require("../controllers/player")
-const mail = require("../controllers/mailer")
-const socketNtfc = require("../controllers/socketNotifications")
-const config = require("../config")
-const ServerError = require("../errors/server-error")
+const team = require("../../controllers/team")
+const player = require("../../controllers/player")
+const mail = require("../../controllers/mailer")
+const socketNtfc = require("../../controllers/socketNotifications")
+const config = require("../../config")
+const ServerError = require("../../errors/server-error")
 const router = express.Router()
 
 router.use((req, res, next) => {

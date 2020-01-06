@@ -57,7 +57,7 @@ async function blockingPlayer(id, comment) {
 async function deleteUser(id) {
     try {
         await userDB.deleteUser(id)
-        return "пользователь удален"
+        return "Пользователь удален"
     } catch (err) {
         throw new DatabaseError(err)
     }

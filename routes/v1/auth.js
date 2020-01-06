@@ -1,14 +1,11 @@
 const express = require("express")
-const cntrl = require("../controllers/auth")
-const mail = require("../controllers/mailer")
-const socketNtfc = require("../controllers/socketNotifications")
+const cntrl = require("../../controllers/auth")
+const mail = require("../../controllers/mailer")
+const socketNtfc = require("../../controllers/socketNotifications")
 const router = express.Router()
-const config = require("../config")
+const config = require("../../config")
 
-const {
-    registerValidation,
-    loginValidation,
-} = require("../utils/validations/index")
+const {registerValidation, loginValidation} = require("../../utils/validations")
 const {validationResult} = require("express-validator")
 
 router.post("/registration/", registerValidation, async (req, res, next) => {
